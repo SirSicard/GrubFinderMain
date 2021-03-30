@@ -18,4 +18,4 @@ Route::get('/', function () {
 });
 
 //Auth routes goes here
-Route::get('/login', function() { return "login from here"; });
+Route::get('/login', function() { return view('auth.login'); });
