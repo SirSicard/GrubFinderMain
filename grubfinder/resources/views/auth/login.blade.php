@@ -16,12 +16,21 @@
             <div>
                 <label for="email" class="lable font-poppins">Email</label>
                 {{ Form::text('email',null,['class' => 'input', 'id' =>'email']) }}
-{{--                <input type="email" id="email" class="input">--}}
+                @error('email')
+                <div class="text-red-500 mt-2 text-sm">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
 
             <div>
                 <label for="password" class="lable font-poppins">Password</label>
                 {{ Form::password('password',['class' => 'input', 'id' =>'password']) }}
+                @error('password')
+                <div class="text-red-500 mt-2 text-sm">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
 
             <div>

@@ -32,6 +32,34 @@ class UsersController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function login(Request $request)
+    {
+
+//        get the data from request
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+
+//      attempt login
+        auth()->attempt($request->only('email', 'password'));
+
+        return redirect()->route('backend.dashboard');
+    }
+
+    public function logout()
+    {
+        //logout user
+        auth()->logout();
+        return redirect()->route('login');
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param UserRequest $userRequest
