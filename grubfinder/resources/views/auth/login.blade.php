@@ -10,16 +10,18 @@
         </div>
 
         <!-- form start -->
-        <form action="" class="space-y-5">
+        {!! Form::open(['route' => 'login','class' => 'space-y-5']) !!}
+
 
             <div>
                 <label for="email" class="lable font-poppins">Email</label>
-                <input type="email" id="email" class="input">
+                {{ Form::text('email',null,['class' => 'input', 'id' =>'email']) }}
+{{--                <input type="email" id="email" class="input">--}}
             </div>
 
             <div>
                 <label for="password" class="lable font-poppins">Password</label>
-                <input type="password" id="password" class="input">
+                {{ Form::password('password',['class' => 'input', 'id' =>'password']) }}
             </div>
 
             <div>
@@ -28,7 +30,7 @@
 
             <input type="submit" value="Log in" class="w-full font-semibold button font-poppins">
 
-        </form>
+        {!! Form::close() !!}
         <!-- form end/ -->
     </div>
 
