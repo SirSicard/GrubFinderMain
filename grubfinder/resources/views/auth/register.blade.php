@@ -11,7 +11,7 @@
 
             <!-- form start -->
             {!! Form::open(['route' => 'register','class' => 'space-y-5']) !!}
-
+                @csrf
                 <div>
                     <label for="name" class="lable font-poppins">Name</label>
                     {{ Form::text('name',null,['class' => 'input', 'id' =>'name']) }}
