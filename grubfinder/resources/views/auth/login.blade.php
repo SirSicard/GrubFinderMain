@@ -11,7 +11,7 @@
 
         <!-- form start -->
         {!! Form::open(['route' => 'login','class' => 'space-y-5']) !!}
-            @csrf
+
 
             <div>
                 <label for="email" class="lable font-poppins">Email</label>
