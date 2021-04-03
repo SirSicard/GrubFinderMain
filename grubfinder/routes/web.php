@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\UsersController;
+use App\Http\Controllers\Backend\CategoriesController;
 use App\Http\Controllers\Backend\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,7 +30,8 @@ Route::post('/register', [UsersController::class, 'store']);
 
 //all the admin stuff is located inside /backednd prefix
 Route::middleware(['auth'])->name('backend.')->group(function(){
-    Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
+    Route::get('dashboard', [DashboardController::class,'index'])->name('dashboard');
+    Route::resource('categories', CategoriesController::class);
 });
 
 
