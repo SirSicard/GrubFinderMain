@@ -20,13 +20,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//register get and post routes
+Route::get('/register', [UsersController::class, 'create'])->name('register');
+Route::post('/register', [UsersController::class, 'store']);
 //Login get and post routes
 Route::get('/login', [UsersController::class, 'index'])->name('login');
 Route::post('/login', [UsersController::class, 'login']);
 Route::post('/logout', [UsersController::class, 'logout'])->name('logout');
-//register get and post routes
-Route::get('/register', [UsersController::class, 'create'])->name('register');
-Route::post('/register', [UsersController::class, 'store']);
+
 
 //all the admin stuff is located inside /backednd prefix
 Route::middleware(['auth'])->name('backend.')->group(function(){
