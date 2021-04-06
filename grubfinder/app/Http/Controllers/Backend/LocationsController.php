@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LocationsRequest;
+use App\Models\Locations;
 use Illuminate\Http\Request;
 
 class LocationsController extends Controller
@@ -12,9 +14,10 @@ class LocationsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Locations $location)
     {
-        return view('locations.index');
+        $locations = $location->get();
+        return view('locations.index', compact('locations'));
     }
 
     /**
@@ -24,7 +27,7 @@ class LocationsController extends Controller
      */
     public function create()
     {
-        //
+        return view('locations.create');
     }
 
     /**
@@ -33,9 +36,10 @@ class LocationsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LocationsRequest $locationRequest, Locations $location)
     {
-        //
+        $location->create($locationRequest->all());
+        return redirect()->route('backend.locations.index');
     }
 
     /**
