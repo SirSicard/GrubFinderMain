@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\UsersController;
 use App\Http\Controllers\Backend\CategoriesController;
+use App\Http\Controllers\Backend\LocationsController;
 use App\Http\Controllers\Backend\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,7 @@ Route::post('/logout', [UsersController::class, 'logout'])->name('logout');
 Route::middleware(['auth'])->name('backend.')->group(function(){
     Route::get('dashboard', [DashboardController::class,'index'])->name('dashboard');
     Route::resource('categories', CategoriesController::class);
+    Route::resource('locations', LocationsController::class);
 });
 
 
