@@ -84,8 +84,11 @@ class LocationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Locations $location)
     {
-        //
+        
+        $location->delete();
+
+        return redirect()->route('backend.locations.index');
     }
 }
