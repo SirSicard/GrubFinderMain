@@ -20,13 +20,18 @@
         <div class="col-span-1">ID</div>
         <div>Name</div>
         <div class="col-span-2">Description</div>
-        <div># of restaurants</div>
+        <div>Actions</div>
 
         @foreach($categories as $category)
             <div class="col-span-1">{{$category->id}}</div>
             <div>{{$category->name}}</div>
             <div class="col-span-2">{{$category->description}}</div>
-            <div></div>
+            <div>
+                <div class="inline-block float-right button font-bold">
+                   <a href="{{ route('backend.categories.edit', $category) }}">Update</a>
+                </div>
+            </div>
+
         @endforeach
     </div>
     @endsection

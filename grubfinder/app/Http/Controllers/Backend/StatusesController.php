@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StatusRequest;
+use App\Models\Status;
 use Illuminate\Http\Request;
 
 class StatusesController extends Controller
@@ -10,12 +12,14 @@ class StatusesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index()
+    public function index(Status $status)
     {
         //
-        return view('statuses.index');
+        $statuses = $status->get();
+//        return $statuses;
+        return view('statuses.index', compact('statuses'));
     }
 
     /**
@@ -26,17 +30,20 @@ class StatusesController extends Controller
     public function create()
     {
         //
+        return view('statuses.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(StatusRequest $statusRequest ,Status $status)
     {
         //
+        $status->create($statusRequest->all());
+        return redirect()->route('backend.statuses.index');
     }
 
     /**
