@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
@@ -12,10 +14,11 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Category $category)
     {
         //
-        return view('categories.index');
+        $categories = $category->get();
+        return view('categories.index', compact('categories'));
     }
 
     /**
@@ -26,6 +29,7 @@ class CategoriesController extends Controller
     public function create()
     {
         //
+        return view('categories.create');
     }
 
     /**
@@ -34,9 +38,11 @@ class CategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $categoryRequest, Category $category)
     {
         //
+        $category->create($categoryRequest->all());
+        return redirect()->route('backend.categories.index');
     }
 
     /**
