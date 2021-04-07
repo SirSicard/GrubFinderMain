@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class \StatusController extends Controller
+class StatusesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +15,7 @@ class \StatusController extends Controller
     public function index()
     {
         //
+        return view('statuses.index');
     }
 
     /**
