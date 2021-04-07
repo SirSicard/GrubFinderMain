@@ -20,13 +20,18 @@
         <div class="col-span-1">ID</div>
         <div>Name</div>
         <div class="col-span-2">Description</div>
-        <div># of restaurants</div>
+        <div>Actions</div>
 
         @foreach($locations as $location)
             <div class="col-span-1">{{$location->id}}</div>
             <div>{{$location->name}}</div>
             <div class="col-span-2">{{$location->description}}</div>
-            <div></div>
+            <div>
+                <div class="inline-block float-right font-bold button">
+                   <a href="{{ route('backend.locations.edit', $location) }}">Update</a>
+                </div>
+            </div>
+
         @endforeach
     </div>
     @endsection
