@@ -12,10 +12,11 @@
             <!-- form start -->
             {!! Form::open(['route' => 'register','class' => 'space-y-5']) !!}
 
+
                 <div>
                     <label for="name" class="lable font-poppins">Name</label>
                     {{ Form::text('name',null,['class' => 'input', 'id' =>'name']) }}
-                    {{--                <input type="email" id="email" class="input">--}}
+
                     @error('name')
                     <div class="text-red-500 mt-2 text-sm">
                         {{ $message }}

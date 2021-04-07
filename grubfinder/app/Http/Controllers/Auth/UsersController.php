@@ -76,7 +76,7 @@ class UsersController extends Controller
         $user->create($data);
         // attempt login with post data
         auth()->attempt($userRequest->only('email', 'password'));
-
+        // send the new user to dashboard
         return redirect()->route('backend.dashboard');
     }
 
