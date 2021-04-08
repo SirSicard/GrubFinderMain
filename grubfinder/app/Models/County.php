@@ -21,4 +21,8 @@ class County extends Model
     {
         return $this->hasManyThrough(Restaurant::class, Location::class);
     }
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

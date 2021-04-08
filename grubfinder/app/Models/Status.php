@@ -15,4 +15,8 @@ class Status extends Model
     {
         return $this->hasMany(Restaurant::class);
     }
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

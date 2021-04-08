@@ -20,4 +20,8 @@ class Location extends Model
     {
         return $this->belongsTo(County::class);
     }
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }
