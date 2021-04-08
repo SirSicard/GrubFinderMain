@@ -15,12 +15,26 @@ class CreateRestaurantsTable extends Migration
     {
         Schema::create('restaurants', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('location_id')->unsigned();
-            $table->bigInteger('categorie_id')->unsigned();
-            $table->bigInteger('status_id')->unsigned();
             $table->string('name');
-            $table->text('description')->nullable();
+            $table->text('description');
+            $table->text('address');
+            $table->text('phone');
+            $table->text('website')->nullable();
+            $table->longText('gmap');
             $table->timestamps();
+
+//            foreign key associations
+            $table->foreignId('location_id')
+                ->references('id')
+                ->on('locations')
+                ->onDelete('cascade');
+
+            $table->foreignId('status_id')
+                ->references('id')
+                ->on('statuses')
+                ->onDelete('cascade');
+
+
         });
     }
 

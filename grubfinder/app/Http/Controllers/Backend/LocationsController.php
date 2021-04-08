@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LocationsRequest;
-use App\Models\Locations;
+use App\Models\Location;
 use Illuminate\Http\Request;
 
 class LocationsController extends Controller
@@ -14,7 +14,7 @@ class LocationsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Locations $location)
+    public function index(Location $location)
     {
         $locations = $location->get();
         return view('locations.index', compact('locations'));
@@ -36,7 +36,7 @@ class LocationsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(LocationsRequest $locationRequest, Locations $location)
+    public function store(LocationsRequest $locationRequest, Location $location)
     {
         $location->create($locationRequest->all());
         return redirect()->route('backend.locations.index');
@@ -59,31 +59,37 @@ class LocationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Location $location)
     {
-        //
+        return view('locations.update', compact('location'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param LocationsRequest $locationRequest
+     * @param Location $location
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(LocationsRequest $locationRequest, Location $location)
     {
-        //
+        $location->update($locationRequest->all());
+        return redirect()->route('backend.locations.index');
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Location $location
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Location $location)
     {
-        //
+
+        $location->delete();
+
+        return redirect()->route('backend.locations.index');
     }
 }
