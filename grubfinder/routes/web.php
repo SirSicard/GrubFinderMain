@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 //landing page
 
 //see all restaurants in one place, list of restaurants
-Route::get('/', [BusinessesController::class, 'index']);
+Route::get('/', [BusinessesController::class, 'index'])->name('home');
 //Route::get('/add', [BusinessesController::class, 'add']);
 
 //see most recently added restaurants,  list of restaurants
@@ -39,7 +39,8 @@ Route::post('filter',
 
 
 //submit suggestions for new restaurants, form to submit data
-Route::get('add', [BusinessesController::class, 'addRestaurant']);
+Route::get('add', [BusinessesController::class, 'addRestaurant'])->name('add');
+Route::post('add', [BusinessesController::class, 'storeRestaurant']);
 
 
 

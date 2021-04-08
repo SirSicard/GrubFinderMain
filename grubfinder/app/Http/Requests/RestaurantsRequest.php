@@ -30,7 +30,7 @@ class RestaurantsRequest extends FormRequest
             'address' => 'required',
             'phone' => 'required',
 //            'gmap' => 'required',
-            'status_id' => 'required'
+            //'status_id' => 'required'
 
         ];
     }

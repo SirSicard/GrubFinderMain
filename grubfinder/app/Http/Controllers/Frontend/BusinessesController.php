@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RestaurantsRequest;
 use App\Models\Category;
 use App\Models\Location;
 use App\Models\Restaurant;
 use App\Models\Status;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class BusinessesController extends Controller
 {
@@ -46,10 +48,19 @@ class BusinessesController extends Controller
      * @return void
      */
 
-    public function addRestaurant(Restaurant $restaurant, RestaurantsRequest $restaurantsRequest){
+    public function addRestaurant(){
         //return "form with Name, location, description, categories. Status will be selected by default to submitted from post method";
-        return view('add');
+        $locations = Location::all()->pluck('name', 'id');
+        $categories = Category::all();
+        return view('add', compact('locations', 'categories'));
     }
 
+    public function storeRestaurant(RestaurantsRequest $restaurantsRequest, Restaurant $restaurant){
+        $restaurantsRequest['slug'] = Str::slug($restaurantsRequest->name, '-');
+        $restaurantsRequest['status_id'] = 1;
+        $restaurant->create($restaurantsRequest->all())
+        ->categories()->sync($restaurantsRequest->categories);
+        return redirect()->route('home');
+    }
 
 }

@@ -77,7 +77,7 @@
                 @endforeach</ul>
     
         </div>
-        {!! Form::open(['route' => 'frontend.businesses.addRestaurant','class' => 'space-y-5']) !!}
+        {!! Form::open(['route' => 'add','class' => 'space-y-5']) !!}
         <div class="grid grid-cols-2">
             <div>
                 <label for="name" class="text-gray-200">Name</label>
@@ -135,12 +135,12 @@
             <div>
                 {{ Form::select('location_id', $locations, ['class' => 'w-full', 'id' => 'location']) }}
             </div>
-            <div>
+            {{-- <div>
                 <label for="status" class="text-gray-200">Status</label>
             </div>
             <div>
                 {{ Form::select('status_id', $statuses, ['class' => 'w-full', 'id' => 'status']) }}
-            </div>
+            </div> --}}
             <div>
                 Categories
             </div>
