@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RestaurantsRequest extends FormRequest
+class CountyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,14 +23,6 @@ class RestaurantsRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-            'name'=> 'required',
-            'address' => 'required',
-            'phone' => 'required',
-//            'gmap' => 'required',
-            'status_id' => 'required'
-
-        ];
+        return ['name' => 'required'];
     }
 }

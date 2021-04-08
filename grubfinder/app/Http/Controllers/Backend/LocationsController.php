@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LocationsRequest;
+use App\Models\County;
 use App\Models\Location;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class LocationsController extends Controller
 {
@@ -14,32 +16,36 @@ class LocationsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Location $location)
+    public function index(County $county)
     {
-        $locations = $location->get();
-        return view('locations.index', compact('locations'));
+        $locations = $county->locations()->get();
+        return view('locations.index', compact('locations', 'county'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
+     * @param County $county
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(County $county)
     {
-        return view('locations.create');
+
+        return view('locations.create', compact('county'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param LocationsRequest $locationRequest
+     * @param County $county
      * @return \Illuminate\Http\Response
      */
-    public function store(LocationsRequest $locationRequest, Location $location)
+    public function store(LocationsRequest $locationRequest, County $county)
     {
-        $location->create($locationRequest->all());
-        return redirect()->route('backend.locations.index');
+        $locationRequest->slug = Str::slug($locationRequest->name, '-');
+        $county->locations()->create($locationRequest->all());
+        return redirect()->route('backend.counties.locations.index', $county);
     }
 
     /**
