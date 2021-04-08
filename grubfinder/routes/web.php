@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 //see all restaurants in one place, list of restaurants
 Route::get('/', [BusinessesController::class, 'index']);
+//Route::get('/add', [BusinessesController::class, 'add']);
 
 //see most recently added restaurants,  list of restaurants
 
@@ -34,7 +35,7 @@ Route::get('counties/{county:slug}/restaurants', [CountiesController::class, 're
 
 //see all restaurants under a category and location,  list of restaurants
 Route::post('filter',
-    [BusinessesController::class, 'filter']);
+    [BusinessesController::class, 'filter'])->name('filter');
 
 
 //submit suggestions for new restaurants, form to submit data
