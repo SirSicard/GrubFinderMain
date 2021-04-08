@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\UsersController;
 use App\Http\Controllers\Backend\CategoriesController;
 use App\Http\Controllers\Backend\LocationsController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\RestaurantsController;
 use App\Http\Controllers\Backend\StatusesController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,7 @@ Route::middleware(['auth'])->name('backend.')->group(function(){
     Route::resource('categories', CategoriesController::class);
     Route::resource('locations', LocationsController::class);
     Route::resource('statuses', StatusesController::class);
+    Route::resource('restaurants', RestaurantsController::class);
 });
 
 

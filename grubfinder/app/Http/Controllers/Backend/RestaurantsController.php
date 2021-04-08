@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Restaurant;
 use Illuminate\Http\Request;
 
 class RestaurantsController extends Controller
@@ -10,11 +11,15 @@ class RestaurantsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Restaurant $restaurant
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index()
+    public function index(Restaurant    $restaurant)
     {
         //
+
+        $restaurants = $restaurant->all();
+        return view('restaurants.index', compact('restaurants'));
     }
 
     /**
