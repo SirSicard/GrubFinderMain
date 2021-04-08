@@ -20,10 +20,28 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//Front end routes
+//landing page
 
+//see all restaurants in one place, list of restaurants
 Route::get('/', [BusinessesController::class, 'index']);
+
+//see most recently added restaurants,  list of restaurants
+
+
+//see all restaurants in a county,  list of restaurants
 Route::get('counties/{county:slug}/restaurants', [CountiesController::class, 'restaurants'])->name('county.restaurants');
+
+
+//see all restaurants under a category and location,  list of restaurants
+Route::post('locations/{location:slug}/categories/{category:slug}',
+    [BusinessesController::class, 'filter']);
+
+
+//submit suggestions for new restaurants, form to submit data
+Route::get('add', [BusinessesController::class, '
+']);
+
+
 
 //register get and post routes
 Route::get('/register', [UsersController::class, 'create'])->name('register');

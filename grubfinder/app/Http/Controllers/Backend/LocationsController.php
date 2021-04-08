@@ -22,6 +22,9 @@ class LocationsController extends Controller
         return view('locations.index', compact('locations', 'county'));
     }
 
+
+
+
     /**
      * Show the form for creating a new resource.
      *

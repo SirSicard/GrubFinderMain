@@ -28,6 +28,8 @@ class RestaurantsController extends Controller
         return view('restaurants.index', compact('restaurants'));
     }
 
+
+
     /**
      * Show the form for creating a new resource.
      *
