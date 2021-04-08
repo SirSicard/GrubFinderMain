@@ -29,12 +29,6 @@ class CreateRestaurantsTable extends Migration
                 ->on('locations')
                 ->onDelete('cascade');
 
-
-            $table->foreignId('category_id')
-                ->references('id')
-                ->on('categories')
-                ->onDelete('cascade');
-
             $table->foreignId('status_id')
                 ->references('id')
                 ->on('statuses')
