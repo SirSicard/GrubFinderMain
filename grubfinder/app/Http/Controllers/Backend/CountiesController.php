@@ -44,7 +44,7 @@ class CountiesController extends Controller
     public function store(County $county, CountyRequest $countyRequest)
     {
         //
-        $countyRequest->slug = Str::slug($countyRequest->name, '-');
+        $countyRequest['slug'] = Str::slug($countyRequest->name, '-');
         $county->create($countyRequest->all());
         return redirect()->route('backend.counties.index');
     }

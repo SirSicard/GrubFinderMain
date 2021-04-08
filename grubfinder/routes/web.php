@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 //Front end routes
 
 Route::get('/', [BusinessesController::class, 'index']);
-Route::get('counties/{county}/restaurants', [CountiesController::class, 'restaurants']);
+Route::get('counties/{county:slug}/restaurants', [CountiesController::class, 'restaurants'])->name('county.restaurants');
 
 //register get and post routes
 Route::get('/register', [UsersController::class, 'create'])->name('register');

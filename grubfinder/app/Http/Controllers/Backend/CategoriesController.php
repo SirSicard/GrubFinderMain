@@ -42,7 +42,7 @@ class CategoriesController extends Controller
     public function store(CategoryRequest $categoryRequest, Category $category)
     {
         //
-        $categoryRequest->slug = Str::slug($categoryRequest->name, '-');
+        $categoryRequest['slug'] = Str::slug($categoryRequest->name, '-');
         $category->create($categoryRequest->all());
         return redirect()->route('backend.categories.index');
     }

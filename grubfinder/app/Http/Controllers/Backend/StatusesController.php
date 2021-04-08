@@ -43,7 +43,7 @@ class StatusesController extends Controller
     public function store(StatusRequest $statusRequest ,Status $status)
     {
         //
-        $statusRequest->slug = Str::slug($statusRequest->name, '-');
+        $statusRequest['slug']= Str::slug($statusRequest->name, '-');
 
         $status->create($statusRequest->all());
         return redirect()->route('backend.statuses.index');
