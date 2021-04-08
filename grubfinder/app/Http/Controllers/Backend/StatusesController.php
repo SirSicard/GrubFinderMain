@@ -60,34 +60,39 @@ class StatusesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Status $status
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function edit($id)
+    public function edit(Status $status)
     {
-        //
+        return view('statuses.update', compact('status'));
+
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param Status $status
+     * @param StatusRequest $statusRequest
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Status $status, StatusRequest $statusRequest)
     {
-        //
+        $status->update($statusRequest->all());
+        return redirect()->route('backend.statuses.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Status $status
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Status $status)
     {
         //
+        $status->delete();
+        return redirect()->route('backend.statuses.index');
     }
 }

@@ -20,13 +20,24 @@
         <div class="col-span-1">ID</div>
         <div>Name</div>
         <div class="col-span-2">Description</div>
-        <div># of restaurants</div>
+        <div>Actions</div>
 
         @foreach($statuses as $status)
             <div class="col-span-1">{{$status->id}}</div>
             <div>{{$status->name}}</div>
             <div class="col-span-2">{{$status->description}}</div>
-            <div></div>
+            <div>
+                {!! Form::open(['route' => ['backend.statuses.destroy', $status], 'method' =>'delete']) !!}
+                <div class="block inline-block float-right p-4 mt-4 mr-4 text-red-900 transition duration-300 ease-out transform bg-red-400 rounded hover:bg-red-300 hover:text-red-800 hover:shadow-inner hover:scale-105 hover:bg-opacity-50">
+                    <button type="submit" class="font-bold">Delete</button>
+                </div>
+                {!! Form::close() !!}
+
+                <div class="inline-block float-right font-bold button">
+                    <a href="{{ route('backend.statuses.edit', $status) }}">Update</a>
+                </div>
+
+            </div>
         @endforeach
     </div>
 @endsection
