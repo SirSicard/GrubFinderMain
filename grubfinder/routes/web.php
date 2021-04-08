@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\UsersController;
 use App\Http\Controllers\Backend\CategoriesController;
+use App\Http\Controllers\Backend\CountiesController;
 use App\Http\Controllers\Backend\LocationsController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\RestaurantsController;
@@ -36,7 +37,8 @@ Route::post('/logout', [UsersController::class, 'logout'])->name('logout');
 Route::middleware(['auth'])->name('backend.')->group(function(){
     Route::get('dashboard', [DashboardController::class,'index'])->name('dashboard');
     Route::resource('categories', CategoriesController::class);
-    Route::resource('locations', LocationsController::class);
+    Route::resource('counties', CountiesController::class);
+    Route::resource('counties.locations', LocationsController::class);
     Route::resource('statuses', StatusesController::class);
     Route::resource('restaurants', RestaurantsController::class);
 });

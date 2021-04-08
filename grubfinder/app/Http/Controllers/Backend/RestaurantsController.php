@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RestaurantsRequest;
 use App\Models\Category;
+use App\Models\Location;
 use App\Models\Restaurant;
 use App\Models\Status;
 use Illuminate\Http\Request;
@@ -36,8 +37,9 @@ class RestaurantsController extends Controller
         //
         $statuses = Status::all()->pluck('name','id');
         $categories = Category::all();
+        $locations = Location::all()->pluck('name','id');
 //        return $statuses;
-        return view('restaurants.create',compact('statuses', 'categories'));
+        return view('restaurants.create',compact('statuses', 'categories','locations'));
     }
 
     /**
@@ -76,8 +78,13 @@ class RestaurantsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Restaurant $restaurant)
     {
+        $statuses = Status::all()->pluck('name','id');
+        $categories = Category::all();
+        $locations = Location::all()->pluck('name','id');
+
+        return view('restaurants.update', compact('restaurant', 'statuses', 'categories', 'locations'));
         //
     }
 
@@ -88,8 +95,13 @@ class RestaurantsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Restaurant $restaurant, RestaurantsRequest $restaurantsRequest)
     {
+        $restaurant->update($restaurantsRequest->all());
+        $restaurant->categories()->sync($restaurantsRequest->categories);
+
+        return redirect()->route('backend.restaurants.index');
+
         //
     }
 

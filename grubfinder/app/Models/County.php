@@ -5,19 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Location extends Model
+class County extends Model
 {
     use HasFactory;
 
     protected $fillable = ['name', 'description'];
 
-    public function restaurants()
+
+    public function locations()
     {
-        return $this->hasMany(Restaurant::class);
+        return $this->hasMany(Location::class);
     }
 
-    public function county()
+    public function restaurants()
     {
-        return $this->belongsTo(County::class);
+        return $this->hasManyThrough(Restaurant::class, Location::class);
     }
 }

@@ -2,13 +2,13 @@
 @section('content')
     <div class="border-b-2 border-gray-900 border-solid">
         <h1 class="inline-block mb-4 text-6xl text-gray-200">
-            Add New Location
+            Add New Location in {{ $county->name }}
         </h1>
 
 
 
     </div>
-    {!! Form::open(['route' => 'backend.locations.store','class' => 'space-y-5']) !!}
+    {!! Form::open(['route' => ['backend.counties.locations.store', $county],'class' => 'space-y-5']) !!}
         <div class="grid grid-cols-2">
             <div>
                 <label for="name" class="text-gray-200">Name</label>

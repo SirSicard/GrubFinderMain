@@ -2,13 +2,14 @@
 @section('content')
     <div class="border-b-2 border-gray-900 border-solid">
         <h1 class="inline-block mb-4 text-6xl text-gray-200">
-            Create New Restaurant
+            Update {{ $restaurant->name }}
         </h1>
 
 
 
     </div>
-    {!! Form::open(['route' => 'backend.restaurants.store','class' => 'space-y-5']) !!}
+    {!! Form::model($restaurant,['route' => ['backend.restaurants.update', $restaurant],'class' => 'space-y-5',
+    'method' => 'put']) !!}
     <div class="grid grid-cols-2">
         <div>
             <label for="name" class="text-gray-200">Name</label>
@@ -73,8 +74,8 @@
 
         <div>
             @foreach($categories as $category)
-                    <label>{{ $category->name }}</label>
-            {{ Form::checkbox('categories[]', $category->id)  }}
+                <label>{{ $category->name }}</label>
+                {{ Form::checkbox('categories[]', $category->id)  }}
             @endforeach
         </div>
 
