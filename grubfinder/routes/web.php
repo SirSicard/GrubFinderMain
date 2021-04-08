@@ -33,13 +33,12 @@ Route::get('counties/{county:slug}/restaurants', [CountiesController::class, 're
 
 
 //see all restaurants under a category and location,  list of restaurants
-Route::post('locations/{location:slug}/categories/{category:slug}',
+Route::post('filter',
     [BusinessesController::class, 'filter']);
 
 
 //submit suggestions for new restaurants, form to submit data
-Route::get('add', [BusinessesController::class, '
-']);
+Route::get('add', [BusinessesController::class, 'addRestaurant']);
 
 
 
