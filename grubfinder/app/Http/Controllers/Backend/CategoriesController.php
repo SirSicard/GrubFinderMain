@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
@@ -12,10 +14,11 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Category $category)
     {
         //
-        return view('categories.index');
+        $categories = $category->get();
+        return view('categories.index', compact('categories'));
     }
 
     /**
@@ -26,6 +29,7 @@ class CategoriesController extends Controller
     public function create()
     {
         //
+        return view('categories.create');
     }
 
     /**
@@ -34,9 +38,11 @@ class CategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $categoryRequest, Category $category)
     {
         //
+        $category->create($categoryRequest->all());
+        return redirect()->route('backend.categories.index');
     }
 
     /**
@@ -56,9 +62,11 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
         //
+//        return $category;
+        return view('categories.update', compact('category'));
     }
 
     /**
@@ -68,19 +76,26 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $categoryRequest, Category $category)
     {
         //
+        $category->update($categoryRequest->all());
+        return redirect()->route('backend.categories.index');
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Category $category
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
         //
+        $category->delete();
+
+        return redirect()->route('backend.categories.index');
     }
 }

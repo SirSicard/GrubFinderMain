@@ -12,4 +12,10 @@ class Category extends Model
     protected $fillable = ['name', 'description'];
 
 //    relationships goes here
+
+    public function restaurants()
+    {
+        return $this->belongsToMany(Restaurant::class);
+    }
+
 }
