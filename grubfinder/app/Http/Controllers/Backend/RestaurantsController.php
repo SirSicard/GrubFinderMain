@@ -9,6 +9,7 @@ use App\Models\Location;
 use App\Models\Restaurant;
 use App\Models\Status;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class RestaurantsController extends Controller
 {
@@ -52,7 +53,7 @@ class RestaurantsController extends Controller
     public function store(Restaurant $restaurant, RestaurantsRequest $restaurantsRequest)
     {
         // create the restaurant first
-
+        $restaurantsRequest->slug = Str::slug($restaurantsRequest->name, '-');
         $restaurant->create($restaurantsRequest->all())
         ->categories()->sync($restaurantsRequest->categories);
 
@@ -97,9 +98,9 @@ class RestaurantsController extends Controller
      */
     public function update(Restaurant $restaurant, RestaurantsRequest $restaurantsRequest)
     {
+
         $restaurant->update($restaurantsRequest->all());
         $restaurant->categories()->sync($restaurantsRequest->categories);
-
         return redirect()->route('backend.restaurants.index');
 
         //

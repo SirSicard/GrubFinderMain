@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CountyRequest;
 use App\Models\County;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CountiesController extends Controller
 {
@@ -43,6 +44,7 @@ class CountiesController extends Controller
     public function store(County $county, CountyRequest $countyRequest)
     {
         //
+        $countyRequest->slug = Str::slug($countyRequest->name, '-');
         $county->create($countyRequest->all());
         return redirect()->route('backend.counties.index');
     }
@@ -79,6 +81,13 @@ class CountiesController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+
+    public function restaurants(County $county)
+    {
+        $restaurants = $county->restaurants;
+        return $restaurants;
     }
 
     /**

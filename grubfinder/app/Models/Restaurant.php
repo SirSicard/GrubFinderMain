@@ -12,6 +12,8 @@ class Restaurant extends Model
     protected $fillable = ['name', 'description', 'address', 'phone', 'website', 'gmap', 'location_id', 'status_id'];
 
 
+
+
     public function categories()
     {
         return $this->belongsToMany(Category::class);
