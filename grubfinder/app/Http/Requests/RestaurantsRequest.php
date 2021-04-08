@@ -13,7 +13,7 @@ class RestaurantsRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,6 +25,12 @@ class RestaurantsRequest extends FormRequest
     {
         return [
             //
+            'name'=> 'required',
+            'address' => 'required',
+            'phone' => 'required',
+//            'gmap' => 'required',
+            'status_id' => 'required'
+
         ];
     }
 }
