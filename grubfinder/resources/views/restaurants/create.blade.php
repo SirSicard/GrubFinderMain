@@ -5,7 +5,9 @@
             Create New Restaurant
         </h1>
 
-
+        <ul>@foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach</ul>
 
     </div>
     {!! Form::open(['route' => 'backend.restaurants.store','class' => 'space-y-5']) !!}
@@ -15,6 +17,11 @@
         </div>
         <div>
             {{ Form::text('name', null, ['class' => 'w-full', 'id' => 'name']) }}
+            @error('name')
+            <div class="text-red-500 mt-2 text-sm">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
 
         <div>

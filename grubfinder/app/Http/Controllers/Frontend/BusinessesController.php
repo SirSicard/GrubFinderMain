@@ -13,7 +13,7 @@ class BusinessesController extends Controller
 
     public function index(Status $status)
     {
-        $restaurants = $status->where('id',3)->first()->restaurants;
+        $restaurants = $status->where('name','Verified')->first()->restaurants;
         return $restaurants;
     }
 

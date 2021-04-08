@@ -25,7 +25,8 @@ class RestaurantsRequest extends FormRequest
     {
         return [
             //
-            'name'=> 'required',
+            'name'=> 'required|unique:restaurants',
+            'slug' =>'unique:restaurants',
             'address' => 'required',
             'phone' => 'required',
 //            'gmap' => 'required',
