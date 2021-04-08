@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoriesController extends Controller
 {
@@ -41,6 +42,7 @@ class CategoriesController extends Controller
     public function store(CategoryRequest $categoryRequest, Category $category)
     {
         //
+        $categoryRequest->slug = Str::slug($categoryRequest->name, '-');
         $category->create($categoryRequest->all());
         return redirect()->route('backend.categories.index');
     }
@@ -79,6 +81,7 @@ class CategoriesController extends Controller
     public function update(CategoryRequest $categoryRequest, Category $category)
     {
         //
+
         $category->update($categoryRequest->all());
         return redirect()->route('backend.categories.index');
 

@@ -11,8 +11,8 @@ class Status extends Model
 
     protected $fillable = ['name', 'description'];
 
-//    public function restaurants()
-//    {
-//        return $this->hasMany(Restaurant::class);
-//    }
+    public function restaurants()
+    {
+        return $this->hasMany(Restaurant::class);
+    }
 }

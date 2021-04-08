@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\LocationsController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\RestaurantsController;
 use App\Http\Controllers\Backend\StatusesController;
+use App\Http\Controllers\Frontend\BusinessesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,10 +20,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Front end routes
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [BusinessesController::class, 'index']);
+Route::get('counties/{county}/restaurants', [CountiesController::class, 'restaurants']);
 
 //register get and post routes
 Route::get('/register', [UsersController::class, 'create'])->name('register');
@@ -31,6 +32,10 @@ Route::post('/register', [UsersController::class, 'store']);
 Route::get('/login', [UsersController::class, 'index'])->name('login');
 Route::post('/login', [UsersController::class, 'login']);
 Route::post('/logout', [UsersController::class, 'logout'])->name('logout');
+
+
+
+
 
 
 //all the admin stuff is located inside /backednd prefix
