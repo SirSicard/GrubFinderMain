@@ -16,12 +16,7 @@
                 <div>
                     <label for="name" class="lable font-poppins">Name</label>
                     {{ Form::text('name',null,['class' => 'input', 'id' =>'name']) }}
-
-                    @error('name')
-                    <div class="text-red-500 mt-2 text-sm">
-                        {{ $message }}
-                    </div>
-                    @enderror
+                    
                 </div>
 
                 <div>
