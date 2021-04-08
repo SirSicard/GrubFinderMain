@@ -16,7 +16,7 @@ class BusinessesController extends Controller
     public function index(Status $status)
     {
         $restaurants = $status->where('name','Verified')->first()->restaurants;
-        return $restaurants;
+        return view('list', compact('restaurants'));
     }
 
     /**
