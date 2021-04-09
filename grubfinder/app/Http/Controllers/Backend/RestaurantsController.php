@@ -114,8 +114,10 @@ class RestaurantsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Restaurant $restaurant, RestaurantsRequest $restaurantsRequest)
     {
-        //
+        $restaurant->delete($restaurantsRequest->all());
+
+        return redirect()->route('backend.restaurants.index');
     }
 }
