@@ -36,7 +36,7 @@ class BusinessesController extends Controller
         $location = $request->location;
         $category = $request->category;
         $restaurants = Category::findOrFail($category)->restaurants->where('location_id',$location);
-
+        //$restaurants = $status->where('name','Verified')->first()->restaurants;
         return view('list', compact('restaurants', 'locations', 'categories'));
     }
  /**

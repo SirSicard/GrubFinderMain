@@ -68,20 +68,18 @@
 
 <section class="py-8 bg-white border-b">
     {!! Form::open(['route' => 'filter', 'class' => 'space-y-5']) !!}
-    <div class="grid grid-cols-2">
+    <div class="flex grid w-3/4 grid-cols-3 m-auto">
 
         <div>
             {{ Form::select('location', $locations, ['class' => 'w-full', 'id' => 'location']) }}
         </div>
-        <div>
-            Categories
-        </div>
+  
 
         <div>
             {{ Form::select('category', $categories, ['class' => 'w-full', 'id' => 'category'])  }}
         </div>
 
-</div>
+
     <button class="float-right">
         <div class="font-bold button">
             <svg  xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 pb-1" fill="none" viewBox="0 0 24 24"
@@ -90,18 +88,20 @@
             </svg>Search
         </div>
     </button>
-
+  </div>
     {!! Form::close() !!}
 </section>
 <section class="py-8 bg-white border-b">   
 <div class="w-3/4 m-auto">
-    <div class="grid grid-cols-3 font-bold text-gray-600">
+    <div class="grid grid-cols-4 font-bold text-gray-600">
         <div class="col-span-1">Name</div>
+        <div>County</div>
         <div>Location</div>
         <div>Categories</div>
 
         @foreach($restaurants as $restaurant)
             <div class="col-span-1">{{$restaurant->name}}</div>
+            <div>{{$restaurant->location->county->name}}</div>
             <div>{{$restaurant->location->name}}</div>
             <div>{{$restaurant->categories->implode('name', ', ')}}</div>
         @endforeach
