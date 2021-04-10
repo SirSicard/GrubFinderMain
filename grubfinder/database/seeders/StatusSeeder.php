@@ -8,16 +8,24 @@ class StatusSeeder extends Seeder
 {
     protected static $statuses = [
         [
-            'name' => 'Submitted'
+            'name' => 'Submitted',
+            'description' => '',
+            'slug' => 'submitted',
         ],
         [
-            'name' => 'Pending'
+            'name' => 'Pending',
+            'description' => '',
+            'slug' => 'pending',
         ],
         [
-            'name' => 'Terminated'
+            'name' => 'Terminated',
+            'description' => '',
+            'slug' => 'terminated',
         ],
         [
-            'name' => 'Verified'
+            'name' => 'Verified',
+            'description' => '',
+            'slug' => 'verified',
         ],
     ];
     /**
@@ -29,7 +37,11 @@ class StatusSeeder extends Seeder
     {
         foreach(static::$statuses as $status){
             if(Status::where('name', $status['name'])->doesntExist()){
-                Status::create();
+                Status::create([
+                    'name' => $status['name'],
+                    'description' => $status['description'],
+                    'slug' => $status['slug'],
+                ]);
             }
         }
     }

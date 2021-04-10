@@ -9,67 +9,111 @@ class CountySeeder extends Seeder
 {
     protected static $counties = [
         [
-            'name' => 'Norrbotten'
+            'name' => 'Norrbotten',
+            'description' => '',
+            'slug' => 'norrbotten'
         ],
         [
-            'name' => 'Västerbotten'
+            'name' => 'Västerbotten',
+            'description' => '',
+            'slug' => 'vasterbotten',
         ],
         [
-            'name' => 'Jämtland'
+            'name' => 'Jämtland',
+            'description' => '',
+            'slug' => 'jamtland'
         ],
         [
-            'name' => 'Västernorrland'
+            'name' => 'Västernorrland',
+            'description' => '',
+            'slug' => 'vasternorrland'
         ],
         [
-            'name' => 'Gävleborg'
+            'name' => 'Gävleborg',
+            'description' => '',
+            'slug' => 'gavleborg'
         ],
         [
-            'name' => 'Dalarna'
+            'name' => 'Dalarna',
+            'description' => '',
+            'slug' => 'dalarna'
         ],
         [
-            'name' => 'Västmanland'
+            'name' => 'Västmanland',
+            'description' => '',
+            'slug' => 'vastmanland'
         ],
         [
-            'name' => 'Uppsala'
+            'name' => 'Uppsala',
+            'description' => '',
+            'slug' => 'uppsala'
         ],
         [
-            'name' => 'Stockholms län'
+            'name' => 'Stockholms län',
+            'description' => '',
+            'slug' => 'stockholmslan'
         ],
         [
-            'name' => 'Södermanland'
+            'name' => 'Södermanland',
+            'description' => '',
+            'slug' => 'sodermanland'
         ],
         [
-            'name' => 'Örebro'
+            'name' => 'Örebro',
+            'description' => '',
+            'slug' => 'orebro'
         ],
         [
-            'name' => 'Värmland'
+            'name' => 'Värmland',
+            'description' => '',
+            'slug' => 'varmland'
         ],
         [
-            'name' => 'Västra Götaland'
+            'name' => 'Västra Götaland',
+            'description' => '',
+            'slug' => 'vastragötaland'
         ],
         [
-            'name' => 'Östergötland'
+            'name' => 'Östergötland',
+            'description' => '',
+            'slug' => 'ostergotland'
         ],
         [
-            'name' => 'Jönköping'
+            'name' => 'Jönköping',
+            'description' => '',
+            'slug' => 'jonkoping'
         ],
         [
-            'name' => 'Kalmar'
+            'name' => 'Kalmar',
+            'description' => '',
+            'slug' => 'kalmar'
+            
+
         ],
         [
-            'name' => 'Gotland'
+            'name' => 'Gotland',
+            'description' => '',
+            'slug' => 'gotland'
         ],
         [
-            'name' => 'Halland'
+            'name' => 'Halland',
+            'description' => '',
+            'slug' => 'halland'
         ],
         [
-            'name' => 'Kronoberg'
+            'name' => 'Kronoberg',
+            'description' => '',
+            'slug' => 'kronoberg'
         ],
         [
-            'name' => 'Blekinge'
+            'name' => 'Blekinge',
+            'description' => '',
+            'slug' => 'blekinge'
         ],
         [
-            'name' => 'Skåne'
+            'name' => 'Skåne',
+            'description' => '',
+            'slug' => 'skane'
         ],
     ];
     /**
@@ -81,7 +125,11 @@ class CountySeeder extends Seeder
     {
         foreach(static::$counties as $county){
             if(County::where('name', $county['name'])->doesntExist()){
-                County::create();
+                County::create([
+                    'name' => $county['name'],
+                    'description' => $county['description'],
+                    'slug' => $county['slug'],
+                ]);
             }
         }
     }

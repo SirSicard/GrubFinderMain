@@ -10,25 +10,39 @@ class CategorySeeder extends Seeder
 {
     protected static $categories = [
         [
-            'name' => 'Fast Food/Drive-thrus'
+            'name' => 'Fast Food/Drive-thrus',
+            'description' => '',
+            'slug' => 'fast-food-drive-thrus',
         ],
         [
-            'name' => 'Fast Casual'
+            'name' => 'Fast Casual',
+            'description' => '',
+            'slug' => 'fast-casual',
         ],
         [
-            'name' => 'Sports Bar'
+            'name' => 'Sports Bar',
+            'description' => '',
+            'slug' => 'sports-bar',
         ],
         [
-            'name' => 'Casual Dining'
+            'name' => 'Casual Dining',
+            'description' => '',
+            'slug' => 'casual-dining',
         ],
         [
-            'name' => 'Fine Dining'
+            'name' => 'Fine Dining',
+            'description' => '',
+            'slug' => 'fine-dining',
         ],
         [
-            'name' => 'Pop-up Restaurants'
+            'name' => 'Pop-up Restaurants',
+            'description' => '',
+            'slug' => 'pop-up-restaurants',
         ],
         [
-            'name' => 'Food Trucks'
+            'name' => 'Food Trucks',
+            'description' => '',
+            'slug' => 'food-trucks',
         ],
     ];
     /**
@@ -41,7 +55,11 @@ class CategorySeeder extends Seeder
         //
         foreach(static::$categories as $category){
             if(Category::where('name', $category['name'])->doesntExist()){
-                Category::create();
+                Category::create([
+                    'name' => $category['name'],
+                    'description' => $category['description'],
+                    'slug' => $category['slug'],
+                ]);
             }
         }
 
