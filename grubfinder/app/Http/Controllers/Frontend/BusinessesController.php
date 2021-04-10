@@ -13,13 +13,14 @@ use Illuminate\Support\Str;
 
 class BusinessesController extends Controller
 {
-    //
+
 
     public function index(Status $status)
     {
         $locations = Location::all()->pluck('name', 'id');
         $categories = Category::all()->pluck('name', 'id');
         $restaurants = $status->where('name','Verified')->first()->restaurants;
+        //$restaurants = $restaurant->with('location', 'categories')->get();
         return view('list', compact('restaurants', 'locations', 'categories'));
     }
 

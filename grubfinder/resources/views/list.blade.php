@@ -91,7 +91,7 @@
   </div>
     {!! Form::close() !!}
 </section>
-<section class="py-8 bg-white border-b">   
+<section class="px-12 py-8 bg-white border-b">   
 <div class="w-3/4 m-auto">
     <div class="grid grid-cols-4 font-bold text-gray-600">
         <div class="col-span-1">Name</div>
@@ -107,23 +107,25 @@
         @endforeach
     </div>
 </div>
-
-<div class="container mx-auto">
-  <div class="block">
-    <div class="flex flex-col">
-      <div class="p-4 md:w-1/2">
-        <img src="" alt="">
-      </div>
-      <div class="p-2 md:w-1/2">
-        <div>
-          <div>Name</div>
-
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis facere iusto rem, consequuntur optio a sit sed earum, ipsum aut
-          </p>
+<div>
+  <h4 class="pb-2 mt-12 font-bold border-b border-gray-200">Latest Restaurants</h4>
+  
+    <div class="grid gap-10 mt-8 lg:grid-cols-3 ">
+          
+      @foreach($restaurants as $restaurant)<!-- card go here -->
+        <div class="relative overflow-hidden bg-white rounded shadow-md hover:shadow-lg">
+            <img src="https://picsum.photos/600?random&grayscale" alt="" class="object-cover w-full h-48 sm:h-48">
+            <div class="m-4">
+                <span class="font-bold">{{$restaurant->name}}</span>
+                <span class="block text-sm text-gray-500">{{$restaurant->categories->implode('name', ', ')}}</span>
+            </div>
+            <div class="absolute top-0 p-2 mt-2 ml-2 text-xs uppercase rounded-full bg-secondary-100 text-secondary-200">
+                <span>{{$restaurant->updated_at}}</span>
+            </div>
         </div>
+        @endforeach 
     </div>
-  </div>
+    
 </div>
 </section> 
 </body>

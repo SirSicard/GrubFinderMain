@@ -23,7 +23,7 @@ class RestaurantsController extends Controller
     {
         //
 
-        $restaurants = $restaurant->with('location', 'categories')->get();
+        $restaurants = $restaurant->orderByRaw('updated_at DESC')->with('location', 'categories')->get();
 
         return view('restaurants.index', compact('restaurants'));
     }
