@@ -40,5 +40,11 @@
             </div>
 
         @endforeach
+       
     </div>
+
+    <nav class="flex justify-center m-auto ">
+        {{ $restaurants->links() }}
+    </nav>
+
 @endsection

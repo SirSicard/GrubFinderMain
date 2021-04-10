@@ -119,7 +119,7 @@
                 <span class="font-bold">{{$restaurant->name}}</span>
                 <span class="block text-sm text-gray-500">{{$restaurant->categories->implode('name', ', ')}}</span>
             </div>
-            <div class="absolute top-0 p-2 mt-2 ml-2 text-xs uppercase rounded-full bg-secondary-100 text-secondary-200">
+            <div class="absolute top-0 p-2 mt-2 ml-2 text-xs uppercase bg-gray-200 rounded-full bg-secondary-100 text-secondary-200">
                 <span>{{$restaurant->updated_at}}</span>
             </div>
         </div>
