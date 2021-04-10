@@ -23,7 +23,7 @@ class RestaurantsController extends Controller
     {
         //
 
-        $restaurants = $restaurant->all();
+        $restaurants = $restaurant->with('location', 'categories')->get();
 
         return view('restaurants.index', compact('restaurants'));
     }
