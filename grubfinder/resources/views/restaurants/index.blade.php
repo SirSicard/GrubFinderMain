@@ -5,7 +5,7 @@
             Restaurants
         </h1>
 
-        <div class="inline-block float-right font-bold button">
+        <div class="block inline-block float-right p-4 mt-2 mb-2 mr-4 font-bold text-blue-900 transition duration-300 ease-out transform bg-blue-400 rounded hover:bg-blue-300 hover:text-blue-800 hover:shadow-inner hover:scale-105 hover:bg-opacity-50">
             <a href="{{ route('backend.restaurants.create') }}">
                 <svg  xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 pb-1" fill="none" viewBox="0 0 24 24"
                       stroke="currentColor">
