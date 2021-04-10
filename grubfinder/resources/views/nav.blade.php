@@ -56,7 +56,7 @@
               <a class="inline-block py-2 text-black hover:text-gray-800 hover:underline" href="{{ route('register') }}">Apply for admin</a>
             </li>
             <li class="mr-3">
-              <a class="inline-block px-4 py-2 text-black hover:text-gray-800 hover:underline" href="{{ route('add') }}">Restaurant list</a>
+              <a class="inline-block px-4 py-2 text-black hover:text-gray-800 hover:underline" href="{{ route('add') }}">Sugestions</a>
             </li>
           </ul>
           <button id="navAction" class="px-8 py-4 mx-auto mt-4 font-extrabold text-gray-800 rounded shadow opacity-75 lg:mx-0 hover:underline lg:mt-0"><a href="{{ route('login') }}">Admin</a></button>
