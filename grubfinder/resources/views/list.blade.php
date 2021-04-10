@@ -5,9 +5,9 @@
     {!! Form::open(['route' => 'filter', 'class' => 'space-y-5']) !!}
         <div class="flex flex-wrap items-center justify-between w-3/4 m-auto">
 
-            <div>
+            {{-- <div>
                 {{ Form::select('category', $categories, ['class' => 'w-full', 'id' => 'category'])  }}
-            </div>
+            </div> --}}
 
             <div>
                 {{ Form::select('location', $locations, ['class' => 'w-full', 'id' => 'location']) }}

@@ -43,4 +43,8 @@
 
         @endforeach
     </div>
+
+    <nav class="m-4">
+        {{ $locations->links() }}
+    </nav>
     @endsection

@@ -19,7 +19,7 @@ class CountiesController extends Controller
     public function index( County $county)
     {
         //
-        $counties = $county->with('locations', 'restaurants', )->get();
+        $counties = $county->orderByRaw('name')->with('locations', 'restaurants', )->get();
         return view('counties.index', compact('counties'));
     }
 
