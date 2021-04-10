@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RestaurantsRequest;
+use App\Http\Requests\StatusRequest;
 use App\Models\Category;
 use App\Models\Location;
 use App\Models\Restaurant;
@@ -98,7 +99,7 @@ class RestaurantsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Restaurant $restaurant, RestaurantsRequest $restaurantsRequest)
+    public function update(Restaurant $restaurant, RestaurantsRequest $restaurantsRequest, StatusRequest $statusRequest)
     {
 
         $restaurant->update($restaurantsRequest->all());
