@@ -50,4 +50,8 @@
 
         @endforeach
     </div>
+
+    <nav class="m-4">
+        {{ $counties->links() }}
+    </nav>
 @endsection
