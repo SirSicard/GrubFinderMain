@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CountyRequest;
+use App\Models\Category;
 use App\Models\County;
+use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -86,8 +88,12 @@ class CountiesController extends Controller
 
     public function restaurants(County $county)
     {
+
+        $locations = Location::all()->pluck('name', 'id');
+        $categories = Category::all()->pluck('name', 'id');
+
         $restaurants = $county->restaurants;
-        return $restaurants;
+        return view('list', compact('restaurants', 'locations', 'categories'));
     }
 
     /**
