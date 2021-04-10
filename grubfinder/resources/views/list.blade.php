@@ -107,6 +107,24 @@
         @endforeach
     </div>
 </div>
+
+<div class="container mx-auto">
+  <div class="block">
+    <div class="flex flex-col">
+      <div class="p-4 md:w-1/2">
+        <img src="" alt="">
+      </div>
+      <div class="p-2 md:w-1/2">
+        <div>
+          <div>Name</div>
+
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis facere iusto rem, consequuntur optio a sit sed earum, ipsum aut
+          </p>
+        </div>
+    </div>
+  </div>
+</div>
 </section> 
 </body>
 </html>
