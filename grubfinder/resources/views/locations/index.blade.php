@@ -27,6 +27,14 @@
             <div class="mt-4 border-b">{{$location->name}}</div>
             <div class="col-span-2 mt-4 border-b">{{$location->description}}</div>
             <div class="border-b">
+                <div class="block inline-block float-right p-4 mt-2 mb-2 mr-4 text-gray-900 transition duration-300 ease-out transform bg-gray-400 rounded hover:bg-gray-300 hover:text-gray-800 hover:shadow-inner hover:scale-105 hover:bg-opacity-50">
+                    {!! Form::model($location,['route' => ['backend.counties.locations.destroy',$county, $location],
+                    'method'
+                    =>'delete']) !!}
+                    <input name="id" value="{{ $location->id }}" hidden>
+                    <button type="submit" class="font-bold">Delete</button>
+                    {!! Form::close() !!}
+                </div>
 
                 <div class="block inline-block float-left p-4 mt-2 mb-2 mr-4 text-blue-900 transition duration-300 ease-out transform bg-blue-400 rounded hover:bg-blue-300 hover:text-blue-800 hover:shadow-inner hover:scale-105 hover:bg-opacity-50">
                    <a href="{{ route('backend.counties.locations.edit', [$county, $location]) }}">Update</a>

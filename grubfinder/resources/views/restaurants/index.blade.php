@@ -13,7 +13,6 @@
                 </svg>Create New
             </a>
         </div>
-
     </div>
 
     <div class="grid grid-cols-5 font-bold text-gray-200">
