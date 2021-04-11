@@ -91,7 +91,7 @@ class CountiesController extends Controller
         $counties =  County::withCount('restaurants')->get();
         $locations = Location::all()->pluck('name', 'id');
         $categories = Category::all()->pluck('name', 'id');
-        $restaurants = $county->restaurants->paginate(2)->where('status_id', 4)->sortByDesc('created_at');
+        $restaurants = $county->restaurants->where('status_id', 4)->sortByDesc('created_at');
         return view('list', compact('restaurants', 'locations', 'categories', 'counties'));
     }
 
