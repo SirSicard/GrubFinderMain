@@ -21,7 +21,7 @@ class CreateRestaurantsTable extends Migration
             $table->text('address');
             $table->text('phone');
             $table->text('website')->nullable();
-            $table->longText('gmap');
+//            $table->longText('gmap');
             $table->timestamps();
 
 //            foreign key associations
