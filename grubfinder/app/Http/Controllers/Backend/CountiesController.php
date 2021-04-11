@@ -98,11 +98,21 @@ class CountiesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param County $county
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Request $request, County $county)
     {
-        //
+        if($county->locations()->count()>0)
+        {
+            return redirect()->route('backend.dashboard')->with('message','Unable to delete the Counties, Please
+            move any restaurants that belongs to this County before delete');
+        }
+        else{
+            $county->delete($request->all());
+            return redirect()->route('backend.dashboard')->with('message','Delete Success!');
+        }
     }
 }

@@ -64,6 +64,14 @@
     </div>
     <!-- work space wrapper -->
     <div class="col-span-10 p-5">
+        @if(Session::has('message'))
+
+            <p class="text-white text-center">
+                {{Session::get('message') }}
+            </p>
+
+
+        @endif
 
 
             @yield('content')

@@ -91,11 +91,21 @@ class LocationsController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Location $location
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
+     * @param Request $request
+     * @return void
      */
-    public function destroy(Location $location)
+    public function destroy(Request $request)
     {
+        $location= Location::find($request->id);
 
+        if($location->restaurants()->count()>0)
+        {
+            return redirect()->route('backend.dashboard')->with('message','Unable to delete the Location, Please
+            move any restaurants that belongs to this Location before delete');
+        }
+            else{
+                $location->delete($request->all());
+                return redirect()->route('backend.dashboard')->with('message','Delete Success!');
+            }
     }
 }

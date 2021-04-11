@@ -91,11 +91,15 @@ class CategoriesController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Category $category
+     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy(Category $category)
+    public function destroy(Category $category, Request $request)
     {
+        $category->restaurants()->detach();
+        $category->delete($request->all());
 
+        return redirect()->route('backend.restaurants.index');
     }
 }
