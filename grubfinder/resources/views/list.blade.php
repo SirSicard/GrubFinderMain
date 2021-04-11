@@ -1,4 +1,33 @@
 @extends('nav')
+
+
+@section('google-map-stuff')
+
+@endsection
+<script>
+    // Initialize and add the map
+    function initMap() {
+        // The location of Uluru
+        const malmo = { lat: 55.60474300570539, lng: 13.002744390833703};
+
+        // The map, centered at malmo
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 11,
+            center: malmo,
+        });
+        // call the markers
+        addMarkers(map);
+    }
+    function addMarkers(map){
+        @foreach($restaurants as $restaurant)
+        new google.maps.Marker({
+            position: { lat:{!! $restaurant->lat !!}, lng:{!! $restaurant->lng !!} },
+            map:map,
+            title:"{{ $restaurant->name }}"
+        });
+        @endforeach
+    }
+</script>
 @section('frontend')
 
 <section class="py-8 bg-white">
@@ -40,11 +69,8 @@
         <div class="col-span-1">
         @foreach($restaurants as $restaurant)<!-- card go here -->
             <div class="relative overflow-hidden bg-white rounded shadow-md hover:shadow-lg m-3">
-                {{--            <img src="https://picsum.photos/600/600?random&grayscale" alt="" class="object-cover object-center w-full h-48 sm:h-48">--}}
-                <div >
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1302.1575535535476!2d13
-                .00041365398429!3d55.604003852781446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sse!4v1618142740175!5m2!1sen!2sse" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                </div>
+                            <img src="https://picsum.photos/600/600?random&grayscale" alt="" class="object-cover object-center w-full h-48 sm:h-48">
+
                 <div class="absolute top-0 p-2 mt-2 ml-2 text-xs uppercase bg-gray-200 rounded-full bg-secondary-100 text-secondary-200">
                     <time datetime="{{ $restaurant->created_at->toIso8601String() }}">{{ $restaurant->created_at->diffForHumans() }}</time>
                 </div>
@@ -60,21 +86,17 @@
                     <span>{{ $restaurant->location->county->name }}, {{ $restaurant->location->name }}</span>
                 </div>
                 <div class="m-4">
-                    <span class="font-bold">{{$restaurant->name}}</span>
+                    <span class="font-bold">
+                     <a href="{{ route('show', ['restaurant' => $restaurant]) }}">
+                        {{$restaurant->name}}
+                    </a>
+                    </span>
                     <span class="block text-sm text-gray-700">{{$restaurant->description}}</span>
                     <span class="block text-sm text-gray-500">{{$restaurant->categories->implode('name', ', ')}}</span>
                 </div>
 
             </div>
-            <div class="m-4">
-                <span class="font-bold">
-                    <a href="{{ route('show', ['restaurant' => $restaurant]) }}">
-                        {{$restaurant->name}}
-                    </a>
-                </span>
-            <span class="block text-sm text-gray-700">{{$restaurant->description}}</span>
-                <span class="block text-sm text-gray-500">{{$restaurant->categories->implode('name', ', ')}}</span>
-            </div>
+
             @endforeach
         </div>
 
