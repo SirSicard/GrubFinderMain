@@ -66,6 +66,15 @@
                 </div>
 
             </div>
+            <div class="m-4">
+                <span class="font-bold">
+                    <a href="{{ route('show', ['restaurant' => $restaurant]) }}">
+                        {{$restaurant->name}}
+                    </a>
+                </span>
+            <span class="block text-sm text-gray-700">{{$restaurant->description}}</span>
+                <span class="block text-sm text-gray-500">{{$restaurant->categories->implode('name', ', ')}}</span>
+            </div>
             @endforeach
         </div>
 
@@ -87,9 +96,9 @@
 
 <section class="px-12 py-8 bg-white border-b">
     <h4 class="pb-2 mt-12 font-bold border-b border-gray-200">Counties</h4>
-    <div class="text-center mt-4">
+    <div class="mt-4 text-center">
         @foreach($counties as $county)
-            <a class="m-4 rounded-full inline-block p-2 bg-blue-500 text-white" href="{{ route('county.restaurants',
+            <a class="inline-block p-2 m-4 text-white bg-blue-500 rounded-full" href="{{ route('county.restaurants',
             $county) }}">{{
             $county->name
             }} ({{ $county->restaurants_count }})</a>
