@@ -25,7 +25,10 @@ class CategoryRequest extends FormRequest
     {
         return [
             //
-            'name'=> 'required'
+            'name'=>$this->category == null ? 'unique:categories,name' : 'unique:categories,name,'
+                .$this->category->id ,
+            'slug' =>$this->category == null ? 'unique:categories,slug' : 'unique:categories,slug,'
+                .$this->category->id,
         ];
     }
 }

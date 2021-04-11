@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RestaurantsRequest;
 use App\Models\Category;
+use App\Models\County;
 use App\Models\Location;
 use App\Models\Restaurant;
 use App\Models\Status;
@@ -15,13 +16,14 @@ class BusinessesController extends Controller
 {
 
 
-    public function index(Status $status)
+    public function index()
     {
+        $counties = County::all();
         $locations = Location::all()->pluck('name', 'id');
         $categories = Category::all()->pluck('name', 'id');
-        $restaurants = $status->where('name','Verified')->first()->restaurants;
-        //$restaurants = $restaurant->with('location', 'categories')->get();
-        return view('list', compact('restaurants', 'locations', 'categories'));
+        $restaurants = Status::where('name','Verified')->first()->restaurants;
+//        return $restaurants;
+        return view('list', compact('restaurants', 'locations', 'categories', 'counties'));
     }
 
     /**
@@ -36,8 +38,10 @@ class BusinessesController extends Controller
         $categories = Category::all()->pluck('name', 'id');
         $location = $request->location;
         $category = $request->category;
-        $restaurants = Category::findOrFail($category)->restaurants->where('location_id',$location);
-        //$restaurants = $status->where('name','Verified')->first()->restaurants;
+        $restaurants = Category::findOrFail($category)
+            ->restaurants
+            ->where('location_id',$location)
+            ->where('status_id',4);
         return view('list', compact('restaurants', 'locations', 'categories'));
     }
  /**

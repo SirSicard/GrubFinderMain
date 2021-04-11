@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class RestaurantsRequest extends FormRequest
 {
@@ -23,10 +24,13 @@ class RestaurantsRequest extends FormRequest
      */
     public function rules()
     {
+//        dd($this->restaurant);
         return [
             //
-            'name'=> 'required|unique:restaurants',
-            'slug' =>'unique:restaurants',
+            'name'=>$this->restaurant == null ? 'unique:restaurants,name' : 'unique:restaurants,name,'
+                .$this->restaurant->id ,
+            'slug' =>$this->restaurant == null ? 'unique:restaurants,slug' : 'unique:restaurants,slug,'
+                .$this->restaurant->id,
             'address' => 'required',
             'phone' => 'required',
 //            'gmap' => 'required',

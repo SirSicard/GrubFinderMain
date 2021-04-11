@@ -25,7 +25,10 @@ class StatusRequest extends FormRequest
     {
         return [
             //
-            'name'=> 'required'
+            'name'=>$this->status == null ? 'unique:statuses,name' : 'unique:statuses,name,'
+                .$this->status->id ,
+            'slug' =>$this->status == null ? 'unique:statuses,slug' : 'unique:statuses,slug,'
+                .$this->status->id,
         ];
     }
 }

@@ -101,11 +101,9 @@ class RestaurantsController extends Controller
      */
     public function update(Restaurant $restaurant, RestaurantsRequest $restaurantsRequest, StatusRequest $statusRequest)
     {
-
         $restaurant->update($restaurantsRequest->all());
         $restaurant->categories()->sync($restaurantsRequest->categories);
         return redirect()->route('backend.restaurants.index');
-
         //
     }
 
