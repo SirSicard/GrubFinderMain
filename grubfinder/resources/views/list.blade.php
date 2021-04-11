@@ -34,34 +34,50 @@
 <div>
   <h4 class="pb-2 mt-12 font-bold border-b border-gray-200">Latest Restaurants</h4>
 
-    <div class="grid gap-10 mt-8 lg:grid-cols-3 md:grid-cols-2 ">
 
-      @foreach($restaurants as $restaurant)<!-- card go here -->
-        <div class="relative overflow-hidden bg-white rounded shadow-md hover:shadow-lg">
-            <img src="https://picsum.photos/600/600?random&grayscale" alt="" class="object-cover object-center w-full h-48 sm:h-48">
-            <div class="absolute top-0 p-2 mt-2 ml-2 text-xs uppercase bg-gray-200 rounded-full bg-secondary-100 text-secondary-200">
-                <time datetime="{{ $restaurant->created_at->toIso8601String() }}">{{ $restaurant->created_at->diffForHumans() }}</time>
-            </div>
+    <div class="grid grid-cols-3">
+{{--        restaurant wrapper--}}
+        <div class="col-span-1">
+        @foreach($restaurants as $restaurant)<!-- card go here -->
+            <div class="relative overflow-hidden bg-white rounded shadow-md hover:shadow-lg m-3">
+                {{--            <img src="https://picsum.photos/600/600?random&grayscale" alt="" class="object-cover object-center w-full h-48 sm:h-48">--}}
+                <div >
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1302.1575535535476!2d13
+                .00041365398429!3d55.604003852781446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sse!4v1618142740175!5m2!1sen!2sse" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <div class="absolute top-0 p-2 mt-2 ml-2 text-xs uppercase bg-gray-200 rounded-full bg-secondary-100 text-secondary-200">
+                    <time datetime="{{ $restaurant->created_at->toIso8601String() }}">{{ $restaurant->created_at->diffForHumans() }}</time>
+                </div>
 
-            <div class="absolute top-0 right-0 p-2 mt-2 mr-2 text-xs uppercase bg-gray-200 rounded-full bg-secondary-100
+                <div class="absolute top-0 right-0 p-2 mt-2 mr-2 text-xs uppercase bg-gray-200 rounded-full bg-secondary-100
             text-secondary-200">
-                <svg class="inline w-5" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24
+                    <svg class="inline w-5" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24
                  24"
-                     stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                <span>{{ $restaurant->location->county->name }}, {{ $restaurant->location->name }}</span>
+                         stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span>{{ $restaurant->location->county->name }}, {{ $restaurant->location->name }}</span>
+                </div>
+                <div class="m-4">
+                    <span class="font-bold">{{$restaurant->name}}</span>
+                    <span class="block text-sm text-gray-700">{{$restaurant->description}}</span>
+                    <span class="block text-sm text-gray-500">{{$restaurant->categories->implode('name', ', ')}}</span>
+                </div>
+
             </div>
-            <div class="m-4">
-                <span class="font-bold">{{$restaurant->name}}</span>
-            <span class="block text-sm text-gray-700">{{$restaurant->description}}</span>
-                <span class="block text-sm text-gray-500">{{$restaurant->categories->implode('name', ', ')}}</span>
-            </div>
+            @endforeach
+        </div>
+
+{{--        map wrapper --}}
+
+        <div id="map" class="col-span-2">
+
 
         </div>
-        @endforeach
+
     </div>
+
 
 
 
@@ -82,3 +98,5 @@
 
 </section>
 @endsection
+
+

@@ -74,16 +74,18 @@
             @enderror
         </div>
 
+
         <div>
-            <label for="gmap" class="text-gray-200">Google Map</label>
+            <label for="lat" class="text-gray-200">Latitude</label>
         </div>
         <div>
-            {{ Form::text('gmap', null, ['class' => 'w-full', 'id' => 'gmap']) }}
-            @error('gmap')
-            <div class="text-red-500 mt-2 text-sm">
-                {{ $message }}
-            </div>
-            @enderror
+            {{ Form::text('lat', null, ['class' => 'w-full', 'id' => 'lat']) }}
+        </div>
+        <div>
+            <label for="lng" class="text-gray-200">Longitude</label>
+        </div>
+        <div>
+            {{ Form::text('lng', null, ['class' => 'w-full', 'id' => 'lng']) }}
         </div>
 
         <div>

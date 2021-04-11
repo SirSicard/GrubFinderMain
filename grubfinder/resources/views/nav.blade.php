@@ -9,11 +9,36 @@
     <meta name="author" content="" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>GrubFinder</title>
+
+      <script>
+          // Initialize and add the map
+          function initMap() {
+              // The location of Uluru
+              const malmo = { lat: 55.60474300570539, lng: 13.002744390833703};
+
+              // The map, centered at malmo
+              const map = new google.maps.Map(document.getElementById("map"), {
+                  zoom: 11,
+                  center: malmo,
+              });
+            // call the markers
+              addMarkers(map);
+          }
+          function addMarkers(map){
+              @foreach($restaurants as $restaurant)
+                new google.maps.Marker({
+                  position: { lat:{!! $restaurant->lat !!}, lng:{!! $restaurant->lng !!} },
+                  map:map,
+                  title:"{{ $restaurant->name }}"
+              });
+              @endforeach
+          }
+      </script>
   </head>
 
   <body class="flex flex-col leading-relaxed tracking-wide gradient font-poppins">
     <!--Nav-->
-    
+
     <nav id="header" class="top-0 z-30 w-full py-1 text-white lg:py-6">
       <!-- Grubfinder logo -->
       <div class="container flex flex-wrap items-center justify-between w-full px-2 py-2 mx-auto mt-0 lg:py-6">
@@ -69,7 +94,7 @@
     <main>
 
         @yield('frontend')
-    
+
     </main>
 
         <!--Footer-->
@@ -91,7 +116,7 @@
                     Grub Finder
                   </a>
                 </div>
-      
+
                 <div class="flex-1">
                   <p class="font-extrabold text-gray-500 uppercase md:mb-6">Links</p>
                   <ul class="mb-6 list-reset">
@@ -194,15 +219,19 @@
               </div>
             </div>
           </footer>
-      
+            <script
+                src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_API') }}&callback=initMap&libraries=&v=weekly"
+                async
+            ></script>
+
           <script>
             var navMenuDiv = document.getElementById("nav-content");
             var navMenu = document.getElementById("nav-toggle");
-      
+
             document.onclick = check;
             function check(e) {
               var target = (e && e.target) || (event && event.srcElement);
-      
+
               //Nav Menu
               if (!checkParent(target, navMenuDiv)) {
                 // click NOT on the menu
@@ -231,7 +260,7 @@
           </script>
         </body>
       </html>
-      
+
 
 </body>
 </html>
