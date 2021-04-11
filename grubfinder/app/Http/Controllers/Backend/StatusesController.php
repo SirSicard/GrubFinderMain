@@ -94,8 +94,6 @@ class StatusesController extends Controller
      */
     public function destroy(Status $status)
     {
-        //
-        $status->delete();
-        return redirect()->route('backend.statuses.index');
+
     }
 }

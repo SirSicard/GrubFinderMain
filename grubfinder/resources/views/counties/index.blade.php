@@ -40,12 +40,6 @@
                     <a href="{{ route('backend.counties.locations.index', $county) }}">Location</a>
                 </div>
 
-                {!! Form::open(['route' => ['backend.counties.destroy', $county], 'method' =>'delete']) !!}
-                <div class="block inline-block float-left p-4 mt-2 mb-2 mr-4 text-gray-900 transition duration-300 ease-out transform bg-gray-400 rounded hover:bg-gray-300 hover:text-gray-800 hover:shadow-inner hover:scale-105 hover:bg-opacity-50">
-                    <button type="submit" class="font-bold">Delete</button>
-                </div>
-                {!! Form::close() !!}
-
             </div>
 
         @endforeach

@@ -27,11 +27,6 @@
             <div class="mt-4 border-b">{{$category->name}}</div>
             <div class="col-span-2 mt-4 border-b">{{$category->description}}</div>
             <div class="border-b">
-                {!! Form::open(['route' => ['backend.categories.destroy', $category], 'method' =>'delete']) !!}
-                <div class="block inline-block float-right p-4 mt-2 mb-2 mr-4 text-gray-900 transition duration-300 ease-out transform bg-gray-400 rounded hover:bg-gray-300 hover:text-gray-800 hover:shadow-inner hover:scale-105 hover:bg-opacity-50">
-                    <button type="submit" class="font-bold">Delete</button>
-                </div>
-                {!! Form::close() !!}
                 <div class="block inline-block float-right p-4 mt-2 mb-2 mr-4 font-bold text-blue-900 transition duration-300 ease-out transform bg-blue-400 rounded hover:bg-blue-300 hover:text-blue-800 hover:shadow-inner hover:scale-105 hover:bg-opacity-50">
                    <a href="{{ route('backend.categories.edit', $category) }}">Update</a>
                 </div>

@@ -97,8 +97,5 @@ class LocationsController extends Controller
     public function destroy(Location $location)
     {
 
-        $location->delete();
-
-        return redirect()->route('backend.locations.index');
     }
 }
