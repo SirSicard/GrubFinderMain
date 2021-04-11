@@ -18,7 +18,7 @@ class LocationsController extends Controller
      */
     public function index(County $county)
     {
-        $locations = $county->locations()->get();
+        $locations = $county->locations()->orderByRaw('name')->paginate(4);
         return view('locations.index', compact('locations', 'county'));
     }
 
@@ -97,8 +97,5 @@ class LocationsController extends Controller
     public function destroy(Location $location)
     {
 
-        $location->delete();
-
-        return redirect()->route('backend.locations.index');
     }
 }

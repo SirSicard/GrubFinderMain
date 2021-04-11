@@ -24,7 +24,10 @@ class LocationsRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required'
+            'name'=>$this->location == null ? 'unique:locations,name' : 'unique:locations,name,'
+                .$this->location->id ,
+            'slug' =>$this->location == null ? 'unique:locations,slug' : 'unique:locations,slug,'
+                .$this->location->id,
         ];
     }
 }

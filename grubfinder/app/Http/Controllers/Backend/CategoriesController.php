@@ -18,7 +18,7 @@ class CategoriesController extends Controller
     public function index(Category $category)
     {
         //
-        $categories = $category->get();
+        $categories = $category->orderByRaw('name')->get();
         return view('categories.index', compact('categories'));
     }
 
@@ -96,9 +96,6 @@ class CategoriesController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
-        $category->delete();
 
-        return redirect()->route('backend.categories.index');
     }
 }

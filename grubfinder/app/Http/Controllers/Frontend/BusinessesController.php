@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RestaurantsRequest;
 use App\Models\Category;
+use App\Models\County;
 use App\Models\Location;
 use App\Models\Restaurant;
 use App\Models\Status;
@@ -13,14 +14,15 @@ use Illuminate\Support\Str;
 
 class BusinessesController extends Controller
 {
-    //
 
-    public function index(Status $status)
+
+    public function index()
     {
+        $counties =  County::withCount('restaurants')->get();
         $locations = Location::all()->pluck('name', 'id');
         $categories = Category::all()->pluck('name', 'id');
-        $restaurants = $status->where('name','Verified')->first()->restaurants;
-        return view('list', compact('restaurants', 'locations', 'categories'));
+        $restaurants = Status::where('name','Verified',)->first()->restaurants->sortByDesc('created_at');
+        return view('list', compact('restaurants', 'locations', 'categories', 'counties'));
     }
 
     /**
@@ -31,13 +33,17 @@ class BusinessesController extends Controller
     public function filter(Request $request)
     {
         //post location  and category data from form
+        $counties =  County::withCount('restaurants')->get();
         $locations = Location::all()->pluck('name', 'id');
         $categories = Category::all()->pluck('name', 'id');
         $location = $request->location;
         $category = $request->category;
-        $restaurants = Category::findOrFail($category)->restaurants->where('location_id',$location);
-        //$restaurants = $status->where('name','Verified')->first()->restaurants;
-        return view('list', compact('restaurants', 'locations', 'categories'));
+        $restaurants = Category::findOrFail($category)
+            ->restaurants
+            ->with('location')
+            ->where('location_id',$location)
+            ->where('status_id',4);
+        return view('list', compact('restaurants', 'locations', 'categories', 'counties'));
     }
  /**
      * Show the form for creating a new resource.
@@ -61,6 +67,15 @@ class BusinessesController extends Controller
         $restaurant->create($restaurantsRequest->all())
         ->categories()->sync($restaurantsRequest->categories);
         return redirect()->route('home');
+    }
+
+
+    public function showRestaurant(Restaurant $restaurant)
+    {
+        // $counties =  County::withCount('restaurants')->get();
+        // $locations = Location::all()->pluck('name', 'id');
+        // $categories = Category::all()->pluck('name', 'id');
+        return view('restaurant', ['restaurant' => $restaurant], compact('restaurant'));
     }
 
 }

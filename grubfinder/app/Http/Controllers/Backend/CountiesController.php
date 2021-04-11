@@ -21,7 +21,7 @@ class CountiesController extends Controller
     public function index( County $county)
     {
         //
-        $counties = $county->all();
+        $counties = $county->orderByRaw('name')->with('locations', 'restaurants', )->paginate(6);
         return view('counties.index', compact('counties'));
     }
 
@@ -88,12 +88,11 @@ class CountiesController extends Controller
 
     public function restaurants(County $county)
     {
-
+        $counties =  County::withCount('restaurants')->get();
         $locations = Location::all()->pluck('name', 'id');
         $categories = Category::all()->pluck('name', 'id');
-
-        $restaurants = $county->restaurants;
-        return view('list', compact('restaurants', 'locations', 'categories'));
+        $restaurants = $county->restaurants->where('status_id', 4)->sortByDesc('created_at');
+        return view('list', compact('restaurants', 'locations', 'categories', 'counties'));
     }
 
     /**

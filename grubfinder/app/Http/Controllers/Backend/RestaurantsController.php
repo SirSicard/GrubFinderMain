@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RestaurantsRequest;
+use App\Http\Requests\StatusRequest;
 use App\Models\Category;
 use App\Models\Location;
 use App\Models\Restaurant;
@@ -23,7 +24,7 @@ class RestaurantsController extends Controller
     {
         //
 
-        $restaurants = $restaurant->all();
+        $restaurants = $restaurant->orderByRaw('created_at DESC')->with('location', 'categories', 'status')->paginate(4);
 
         return view('restaurants.index', compact('restaurants'));
     }
@@ -98,25 +99,26 @@ class RestaurantsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Restaurant $restaurant, RestaurantsRequest $restaurantsRequest)
+    public function update(Restaurant $restaurant, RestaurantsRequest $restaurantsRequest, StatusRequest $statusRequest)
     {
-
         $restaurant->update($restaurantsRequest->all());
         $restaurant->categories()->sync($restaurantsRequest->categories);
         return redirect()->route('backend.restaurants.index');
-
         //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Restaurant $restaurant
+     * @param RestaurantsRequest $restaurantsRequest
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
-    public function destroy(Restaurant $restaurant, RestaurantsRequest $restaurantsRequest)
+    public function destroy(Restaurant $restaurant, Request $request)
     {
-        $restaurant->delete($restaurantsRequest->all());
+        $restaurant->categories()->detach();
+        $restaurant->delete($request->all());
 
         return redirect()->route('backend.restaurants.index');
     }

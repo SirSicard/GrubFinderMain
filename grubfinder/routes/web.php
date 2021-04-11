@@ -24,9 +24,11 @@ use Illuminate\Support\Facades\Route;
 
 //see all restaurants in one place, list of restaurants
 Route::get('/', [BusinessesController::class, 'index'])->name('home');
+Route::get('restaurant/{restaurant}', [BusinessesController::class, 'showRestaurant'])->name('show');
 //Route::get('/add', [BusinessesController::class, 'add']);
 
 //see most recently added restaurants,  list of restaurants
+
 
 
 //see all restaurants in a county,  list of restaurants

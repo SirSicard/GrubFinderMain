@@ -14,7 +14,7 @@
 
     <div class="pt-16 dashboard-menu">
         <div class="w-20 pb-3 m-auto">
-            <a href="{{ route('backend.dashboard')  }}">
+            <a href="{{ route('home')  }}">
             <img src="../images/logo.png" class="w-20">
             </a>
         </div>

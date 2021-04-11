@@ -9,7 +9,7 @@ class Restaurant extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'address', 'phone', 'website', 'gmap', 'location_id', 'status_id','slug'];
+    protected $fillable = ['name', 'description', 'address', 'phone', 'website',  'location_id', 'status_id','slug','lat','lng'];
 
     public function getRouteKeyName()
     {

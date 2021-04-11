@@ -23,6 +23,11 @@ class CountyRequest extends FormRequest
      */
     public function rules()
     {
-        return ['name' => 'required'];
+        return [
+            'name'=>$this->county == null ? 'unique:counties,name' : 'unique:counties,name,'
+                .$this->county->id ,
+            'slug' =>$this->county == null ? 'unique:counties,slug' : 'unique:counties,slug,'
+                .$this->county->id,
+            ];
     }
 }

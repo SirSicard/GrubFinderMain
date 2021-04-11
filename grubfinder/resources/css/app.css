@@ -16,6 +16,14 @@
     @apply block p-4 text-green-900 transition duration-300 ease-out transform bg-green-400 rounded hover:bg-green-300 hover:text-green-800 hover:shadow-inner hover:scale-105 hover:bg-opacity-50;
 }
 
+.button-blue{
+    @apply block inline-block float-right p-4 mt-2 mb-2 mr-4 font-bold text-blue-900 transition duration-300 ease-out transform bg-blue-400 rounded hover:bg-blue-300 hover:text-blue-800 hover:shadow-inner hover:scale-105 hover:bg-opacity-50;
+}
+
+.button-gray{
+    @apply block inline-block float-right p-4 mt-2 mb-2 mr-4 text-gray-900 transition duration-300 ease-out transform bg-gray-400 rounded hover:bg-gray-300 hover:text-gray-800 hover:shadow-inner hover:scale-105 hover:bg-opacity-50;
+}
+
 /*
 typography
 */
