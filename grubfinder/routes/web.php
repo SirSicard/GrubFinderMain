@@ -29,6 +29,7 @@ Route::get('/', [BusinessesController::class, 'index'])->name('home');
 //see most recently added restaurants,  list of restaurants
 
 
+
 //see all restaurants in a county,  list of restaurants
 Route::get('counties/{county:slug}/restaurants', [CountiesController::class, 'restaurants'])->name('county.restaurants');
 

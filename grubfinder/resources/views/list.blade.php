@@ -76,7 +76,7 @@
             <a class="m-4 rounded-full inline-block p-2 bg-blue-500 text-white" href="{{ route('county.restaurants',
             $county) }}">{{
             $county->name
-            }} ({{ $county->restaurants->count() }})</a>
+            }} ({{ $county->restaurants_count }})</a>
         @endforeach
     </div>
 

@@ -18,10 +18,14 @@ class BusinessesController extends Controller
 
     public function index()
     {
-        $counties = County::all();
+        $counties =  County::withCount('restaurants')->get();
         $locations = Location::all()->pluck('name', 'id');
         $categories = Category::all()->pluck('name', 'id');
+<<<<<<< HEAD
         $restaurants = Status::where('name','Verified',)->first()->restaurants;
+=======
+        $restaurants = Restaurant::where('status_id', 4)->with('location')->get();
+>>>>>>> seeder
 //        return $restaurants;
         return view('list', compact('restaurants', 'locations', 'categories', 'counties'));
     }
@@ -34,15 +38,17 @@ class BusinessesController extends Controller
     public function filter(Request $request)
     {
         //post location  and category data from form
+        $counties =  County::withCount('restaurants')->get();
         $locations = Location::all()->pluck('name', 'id');
         $categories = Category::all()->pluck('name', 'id');
         $location = $request->location;
         $category = $request->category;
         $restaurants = Category::findOrFail($category)
             ->restaurants
+            ->with('location')
             ->where('location_id',$location)
             ->where('status_id',4);
-        return view('list', compact('restaurants', 'locations', 'categories'));
+        return view('list', compact('restaurants', 'locations', 'categories', 'counties'));
     }
  /**
      * Show the form for creating a new resource.
@@ -66,6 +72,12 @@ class BusinessesController extends Controller
         $restaurant->create($restaurantsRequest->all())
         ->categories()->sync($restaurantsRequest->categories);
         return redirect()->route('home');
+    }
+
+
+    public function showRestaurant( Restaurant $restaurant)
+    {
+
     }
 
 }
