@@ -16,3 +16,7 @@ Users:
 
 2. 'email' => 'mrsandersson@admin.com'
    'password' => 'password'
+
+After login with admin:
+
+create locations before creating restaurants
