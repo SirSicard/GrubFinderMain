@@ -1,10 +1,10 @@
 @extends('nav')
 @section('frontend')
-    <section class="py-8 bg-white border-b">
+    <section class="p-4 pb-3 py-8 bg-white border-b text-center m-auto w-1/2">
 
-        <div class="border-b-2 border-gray-900 border-solid">
-            <h1 class="inline-block mb-4 text-6xl text-gray-200">
-                Create New Restaurant
+        <div class="border-b-2  border-gray-900 border-solid">
+            <h1 class="inline-block mb-4 text-6xl text-black">
+                Create a new restaurant suggestion
             </h1>
     
             <ul>@foreach ($errors->all() as $error)
@@ -13,9 +13,9 @@
     
         </div>
         {!! Form::open(['route' => 'add','class' => 'space-y-5']) !!}
-        <div class="grid grid-cols-2">
+        <div class="">
             <div>
-                <label for="name" class="text-gray-200">Name</label>
+                <label for="name" class="text-black">Name</label>
             </div>
             <div>
                 {{ Form::text('name', null, ['class' => 'w-full', 'id' => 'name']) }}
@@ -27,7 +27,7 @@
             </div>
     
             <div>
-                <label class="text-gray-200" for="description">Description</label>
+                <label class="text-black" for="description">Description</label>
     
             </div>
             <div>
@@ -35,7 +35,7 @@
             </div>
     
             <div>
-                <label class="text-gray-200" for="address">Address</label>
+                <label class="text-black" for="address">Address</label>
     
             </div>
             <div>
@@ -44,34 +44,34 @@
     
     
             <div>
-                <label for="phone" class="text-gray-200">Phone</label>
+                <label for="phone" class="text-black">Phone</label>
             </div>
             <div>
                 {{ Form::text('phone', null, ['class' => 'w-full', 'id' => 'phone']) }}
             </div>
     
             <div>
-                <label for="website" class="text-gray-200">Website</label>
+                <label for="website" class="text-black">Website</label>
             </div>
             <div>
                 {{ Form::text('website', null, ['class' => 'w-full', 'id' => 'website']) }}
             </div>
     
             <div>
-                <label for="gmap" class="text-gray-200">Google Map</label>
+                <label for="gmap" class="text-black">Google Map</label>
             </div>
             <div>
                 {{ Form::text('gmap', null, ['class' => 'w-full', 'id' => 'gmap']) }}
             </div>
     
             <div>
-                <label for="location_id" class="text-gray-200">Location</label>
+                <label for="location_id" class="text-black">Location</label>
             </div>
             <div>
                 {{ Form::select('location_id', $locations, ['class' => 'w-full', 'id' => 'location']) }}
             </div>
             {{-- <div>
-                <label for="status" class="text-gray-200">Status</label>
+                <label for="status" class="text-black">Status</label>
             </div>
             <div>
                 {{ Form::select('status_id', $statuses, ['class' => 'w-full', 'id' => 'status']) }}
@@ -93,12 +93,12 @@
     
     
         </div>
-        <button class="float-right">
-            <div class="font-bold button">
-                <svg  xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 pb-1" fill="none" viewBox="0 0 24 24"
+        <button class="m-auto">
+            <div class="font-bold button w-96">
+                <svg  xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 pb-1 " fill="none" viewBox="0 0 24 24"
                       stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>Create New
+                </svg>Submit
             </div>
         </button>
     
