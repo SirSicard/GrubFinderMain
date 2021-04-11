@@ -110,12 +110,15 @@ class RestaurantsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Restaurant $restaurant
+     * @param RestaurantsRequest $restaurantsRequest
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
-    public function destroy(Restaurant $restaurant, RestaurantsRequest $restaurantsRequest)
+    public function destroy(Restaurant $restaurant, Request $request)
     {
-        $restaurant->delete($restaurantsRequest->all());
+        $restaurant->categories()->detach();
+        $restaurant->delete($request->all());
 
         return redirect()->route('backend.restaurants.index');
     }

@@ -30,7 +30,8 @@
             <div class="mt-4 border-b">{{$restaurant->categories->implode('name', ', ')}}</div>
             <div class="border-b">
                 <div class="block inline-block float-right p-4 mt-2 mb-2 mr-4 text-gray-900 transition duration-300 ease-out transform bg-gray-400 rounded hover:bg-gray-300 hover:text-gray-800 hover:shadow-inner hover:scale-105 hover:bg-opacity-50">
-                    {!! Form::open(['route' => ['backend.restaurants.destroy', $restaurant], 'method' =>'delete']) !!}
+                    {!! Form::model($restaurant,['route' => ['backend.restaurants.destroy', $restaurant], 'method'
+                    =>'delete']) !!}
                         <button type="submit" class="font-bold">Delete</button>
                     {!! Form::close() !!}
                 </div>
@@ -40,7 +41,7 @@
             </div>
 
         @endforeach
-       
+
     </div>
 
     <nav class="m-4">
