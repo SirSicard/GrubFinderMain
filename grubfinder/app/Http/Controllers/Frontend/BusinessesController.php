@@ -70,9 +70,12 @@ class BusinessesController extends Controller
     }
 
 
-    public function showRestaurant( Restaurant $restaurant)
+    public function showRestaurant(Restaurant $restaurant)
     {
-
+        // $counties =  County::withCount('restaurants')->get();
+        // $locations = Location::all()->pluck('name', 'id');
+        // $categories = Category::all()->pluck('name', 'id');
+        return view('restaurant', ['restaurant' => $restaurant], compact('restaurant'));
     }
 
 }
