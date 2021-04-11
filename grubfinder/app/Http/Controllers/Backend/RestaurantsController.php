@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RestaurantsRequest;
 use App\Http\Requests\StatusRequest;
+use App\Http\Requests\LinkRequest;
 use App\Models\Category;
 use App\Models\Location;
+use App\Models\Link;
 use App\Models\Restaurant;
 use App\Models\Status;
 use Illuminate\Http\Request;
@@ -121,5 +123,10 @@ class RestaurantsController extends Controller
         $restaurant->delete($request->all());
 
         return redirect()->route('backend.restaurants.index');
+    }
+
+    public function createLink(Restaurant $restaurant, LinkRequest $linkRequest ){
+        
+        $restaurant->links->create($linkRequest->all());
     }
 }

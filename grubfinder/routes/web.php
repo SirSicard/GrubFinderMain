@@ -67,6 +67,7 @@ Route::middleware(['auth'])->name('backend.')->group(function(){
     Route::resource('counties.locations', LocationsController::class);
     Route::resource('statuses', StatusesController::class);
     Route::resource('restaurants', RestaurantsController::class);
+    Route::post('restaurants/{restaurant}/link', [RestaurantsController::class, 'createLink'])->name('restaurants.link');
 });
 
 

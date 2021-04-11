@@ -17,7 +17,7 @@
         <div>
             {{ Form::text('name', null, ['class' => 'w-full', 'id' => 'name']) }}
             @error('name')
-            <div class="text-red-500 mt-2 text-sm">
+            <div class="mt-2 text-sm text-red-500">
                 {{ $message }}
             </div>
             @enderror
@@ -30,7 +30,7 @@
         <div>
             {{ Form::textarea('description', null, ['class' => 'w-full', 'id' => 'description']) }}
             @error('description')
-            <div class="text-red-500 mt-2 text-sm">
+            <div class="mt-2 text-sm text-red-500">
                 {{ $message }}
             </div>
             @enderror
@@ -43,7 +43,7 @@
         <div>
             {{ Form::text('address', null, ['class' => 'w-full', 'id' => 'address']) }}
             @error('address')
-            <div class="text-red-500 mt-2 text-sm">
+            <div class="mt-2 text-sm text-red-500">
                 {{ $message }}
             </div>
             @enderror
@@ -56,7 +56,7 @@
         <div>
             {{ Form::text('phone', null, ['class' => 'w-full', 'id' => 'phone']) }}
             @error('phone')
-            <div class="text-red-500 mt-2 text-sm">
+            <div class="mt-2 text-sm text-red-500">
                 {{ $message }}
             </div>
             @enderror
@@ -68,7 +68,7 @@
         <div>
             {{ Form::text('website', null, ['class' => 'w-full', 'id' => 'website']) }}
             @error('website')
-            <div class="text-red-500 mt-2 text-sm">
+            <div class="mt-2 text-sm text-red-500">
                 {{ $message }}
             </div>
             @enderror
@@ -95,7 +95,7 @@
             {{ Form::select('location_id', $locations,$restaurant->location_id, ['class' => 'w-full', 'id' =>
             'location']) }}
             @error('location_id')
-            <div class="text-red-500 mt-2 text-sm">
+            <div class="mt-2 text-sm text-red-500">
                 {{ $message }}
             </div>
             @enderror
@@ -106,7 +106,7 @@
         <div>
             {{ Form::select('status_id', $statuses,$restaurant->status_id, ['class' => 'w-full', 'id' => 'status']) }}
             @error('status_id')
-            <div class="text-red-500 mt-2 text-sm">
+            <div class="mt-2 text-sm text-red-500">
                 {{ $message }}
             </div>
             @enderror
@@ -139,5 +139,32 @@
         </div>
     </button>
 
+    {!! Form::close() !!}
+
+    {{-- social start here --}}
+    {!! Form::open(['route' => ['backend.restaurants.link', $restaurant],'class' => 'space-y-5',]) !!}
+        <div>
+            {{ Form::text('url', null, ['class' => 'w-full', 'id' => 'url']) }}
+            <div class="mt-2 text-sm text-red-500">
+                url
+            </div>
+        </div>
+
+        <div>
+            {{ Form::text('type', null, ['class' => 'w-full', 'id' => 'type']) }}
+            <div class="mt-2 text-sm text-red-500">
+                type
+            </div>
+
+        </div>
+
+        <button class="float-right">
+            <div class="font-bold button">
+                <svg  xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 pb-1" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>Add
+            </div>
+        </button>
     {!! Form::close() !!}
 @endsection

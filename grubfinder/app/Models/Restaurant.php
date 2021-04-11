@@ -36,4 +36,9 @@ class Restaurant extends Model
     {
         return $this->belongsTo(Status::class);
     }
+
+    public function links(){
+
+        return $this->hasMany(Link::class);
+    }
 }
