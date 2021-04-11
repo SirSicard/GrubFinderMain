@@ -8,6 +8,8 @@
 
 
     </div>
+
+    <section>
     {!! Form::model($restaurant,['route' => ['backend.restaurants.update', $restaurant],'class' => 'space-y-5',
     'method' => 'put']) !!}
     <div class="grid grid-cols-2">
@@ -141,30 +143,81 @@
 
     {!! Form::close() !!}
 
+    </section>
+
+
+<section class="pt-10 mt-10">
     {{-- social start here --}}
     {!! Form::open(['route' => ['backend.restaurants.link', $restaurant],'class' => 'space-y-5',]) !!}
+
+    <div class="grid grid-cols-3 mt-5">
+        <div class="font-bold text-white text-center">
+            Link Type
+        </div>
+        <div class="font-bold text-white text-center">
+            URL
+        </div>
+        <div class="font-bold text-white text-right">
+            Actions
+        </div>
+
+        <div>
+            {{ Form::select('type', ['Website'=>'Website','Socail Media'=>'Social Media', 'Youtube'=>'Youtube',
+            'Email'=>'Email'],
+            null,
+            ['class' =>
+            'w-full', 'id' =>
+            'type']) }}
+
+        </div>
         <div>
             {{ Form::text('url', null, ['class' => 'w-full', 'id' => 'url']) }}
-            <div class="mt-2 text-sm text-red-500">
-                url
-            </div>
         </div>
-
         <div>
-            {{ Form::text('type', null, ['class' => 'w-full', 'id' => 'type']) }}
-            <div class="mt-2 text-sm text-red-500">
-                type
-            </div>
-
+            <button class="float-right">
+                <div class="font-bold button">
+                    <svg  xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 pb-1" fill="none" viewBox="0 0 24 24"
+                          stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>Add
+                </div>
+            </button>
         </div>
 
-        <button class="float-right">
-            <div class="font-bold button">
-                <svg  xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 pb-1" fill="none" viewBox="0 0 24 24"
-                      stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>Add
+        {!! Form::close() !!}
+
+        @foreach($restaurant->links as $link)
+
+            <div class="font-bold text-white text-center">
+                {{$link->type}}
             </div>
-        </button>
-    {!! Form::close() !!}
+            <div class="font-bold text-white text-center">
+                {{ $link->url }}
+            </div>
+            <div class="font-bold text-white text-right">
+                {!! Form::model($link,['route' => ['backend.linkDelete', $link],'method' => 'delete']) !!}
+                <input name="id" value="{{ $link->id }}" hidden>
+                <button class="float-right">
+                    <div class="font-bold button">
+                        <svg  xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 pb-1" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>Delete
+                    </div>
+                </button>
+                {!! Form::close() !!}
+            </div>
+
+        @endforeach
+
+    </div>
+
+
+
+
+
+
+
+
+</section>
 @endsection

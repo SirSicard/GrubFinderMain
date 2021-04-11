@@ -126,7 +126,19 @@ class RestaurantsController extends Controller
     }
 
     public function createLink(Restaurant $restaurant, LinkRequest $linkRequest ){
-        
-        $restaurant->links->create($linkRequest->all());
+
+        $restaurant->links()->create($linkRequest->all());
+        return redirect()->route('backend.restaurants.index');
+
+    }
+
+    public function linkDelete(Request $request, Link $link)
+    {
+
+       $link= Link::find($request->id);
+       $link->delete($request->all());
+
+//        $link->delete($request->all());
+        return redirect()->route('backend.restaurants.index');
     }
 }
