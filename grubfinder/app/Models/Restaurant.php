@@ -52,7 +52,10 @@ class Restaurant extends Model
     {
         return [
             'slug' => [
-                'source' => 'name'
+                'source' => 'name',
+                'separator' => '-',
+                'unique' => true,
+                'firstUniqueSuffix'  => 2,
             ]
         ];
     }

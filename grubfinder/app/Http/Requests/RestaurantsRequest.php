@@ -27,10 +27,12 @@ class RestaurantsRequest extends FormRequest
 //        dd($this->restaurant);
         return [
             //
-            'name'=>$this->restaurant == null ? 'unique:restaurants,name' : 'unique:restaurants,name,'
-                .$this->restaurant->id ,
-            'slug' =>$this->restaurant == null ? 'unique:restaurants,slug' : 'unique:restaurants,slug,'
-                .$this->restaurant->id,
+//            'name'=>$this->restaurant == null ? 'unique:restaurants,name' : 'unique:restaurants,name,'
+//                .$this->restaurant->id ,
+//            'slug' =>$this->restaurant == null ? 'unique:restaurants,slug' : 'unique:restaurants,slug,'
+//                .$this->restaurant->id,
+        'name' => 'required',
+
             'address' => 'required',
             'phone' => 'required',
 //            'gmap' => 'required',
