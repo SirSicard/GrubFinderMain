@@ -21,8 +21,16 @@ class BusinessesController extends Controller
         $counties =  County::withCount('restaurants')->get();
         $locations = Location::all()->pluck('name', 'id');
         $categories = Category::all()->pluck('name', 'id');
-        $restaurants = Status::where('name','Verified',)->first()->restaurants->sortByDesc('created_at');
+        $restaurants = Status::where('name','Verified')
+            ->first()
+            ->restaurants()
+            ->with('location.county','location','categories')
+            ->get()
+            ->sortByDesc('created_at');
         return view('list', compact('restaurants', 'locations', 'categories', 'counties'));
+
+
+
     }
 
     /**
@@ -40,7 +48,7 @@ class BusinessesController extends Controller
         $category = $request->category;
         $restaurants = Category::findOrFail($category)
             ->restaurants()
-            ->with('location')
+            ->with('location.county','location','categories')
             ->where('location_id',$location)
             ->where('status_id',4)
             ->get();
