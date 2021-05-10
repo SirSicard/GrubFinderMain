@@ -39,11 +39,14 @@ class BusinessesController extends Controller
         $location = $request->location;
         $category = $request->category;
         $restaurants = Category::findOrFail($category)
-            ->restaurants
+            ->restaurants()
             ->with('location')
             ->where('location_id',$location)
-            ->where('status_id',4);
+            ->where('status_id',4)
+            ->get();
         return view('list', compact('restaurants', 'locations', 'categories', 'counties'));
+
+
     }
  /**
      * Show the form for creating a new resource.

@@ -2,32 +2,32 @@
 
 
 @section('google-map-stuff')
+    <script>
+        // Initialize and add the map
+        function initMap() {
+            // The location of Uluru
+            const malmo = { lat: 55.60474300570539, lng: 13.002744390833703};
 
+            // The map, centered at malmo
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 11,
+                center: malmo,
+            });
+            // call the markers
+            addMarkers(map);
+        }
+        function addMarkers(map){
+            @foreach($restaurants as $restaurant)
+            new google.maps.Marker({
+                position: { lat:{!! $restaurant->lat !!}, lng:{!! $restaurant->lng !!} },
+                map:map,
+                title:"{{ $restaurant->name }}"
+            });
+            @endforeach
+        }
+    </script>
 @endsection
-<script>
-    // Initialize and add the map
-    function initMap() {
-        // The location of Uluru
-        const malmo = { lat: 55.60474300570539, lng: 13.002744390833703};
 
-        // The map, centered at malmo
-        const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 11,
-            center: malmo,
-        });
-        // call the markers
-        addMarkers(map);
-    }
-    function addMarkers(map){
-        @foreach($restaurants as $restaurant)
-        new google.maps.Marker({
-            position: { lat:{!! $restaurant->lat !!}, lng:{!! $restaurant->lng !!} },
-            map:map,
-            title:"{{ $restaurant->name }}"
-        });
-        @endforeach
-    }
-</script>
 @section('frontend')
 
 <section class="py-8 bg-white">
