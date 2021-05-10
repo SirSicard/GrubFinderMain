@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Location extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable;
 
     protected $fillable = ['name', 'description','slug'];
 
@@ -20,8 +21,12 @@ class Location extends Model
     {
         return $this->belongsTo(County::class);
     }
-    public function getRouteKeyName()
+    public function sluggable(): array
     {
-        return 'slug';
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
     }
 }

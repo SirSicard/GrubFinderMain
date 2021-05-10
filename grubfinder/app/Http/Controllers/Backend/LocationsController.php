@@ -65,12 +65,14 @@ class LocationsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param County $county
+     * @param Location $location
+     * @return Location
      */
-    public function edit(Location $location)
+    public function edit(County $county, Location $location)
     {
-        return view('locations.update', compact('location'));
+
+        return view('locations.update', compact('location','county'));
     }
 
     /**
@@ -78,12 +80,12 @@ class LocationsController extends Controller
      *
      * @param LocationsRequest $locationRequest
      * @param Location $location
-     * @return \Illuminate\Http\Response
+     * @return array
      */
-    public function update(LocationsRequest $locationRequest, Location $location)
+    public function update(Location $location, LocationsRequest $locationRequest)
     {
-        $location->update($locationRequest->all());
-        return redirect()->route('backend.locations.index');
+       $location->update($locationRequest->all());
+        return redirect()->route('backend.dashboard');
 
     }
 

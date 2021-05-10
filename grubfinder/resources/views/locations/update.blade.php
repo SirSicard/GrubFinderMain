@@ -8,9 +8,8 @@
 
 
     </div>
-    {!! Form::model($location,['route' => ['backend.locations.update', $location],'class' => 'space-y-5', 'method'
-    =>'put'])
-     !!}
+    {!! Form::model($location,['route' => ['backend.updatelocation', $location],'class' =>
+    'space-y-5','method'=>'put']) !!}
     <div class="grid grid-cols-2">
         <div>
             <label for="name" class="text-gray-200">Name</label>

@@ -32,7 +32,7 @@ Route::get('restaurant/{restaurant}', [BusinessesController::class, 'showRestaur
 
 
 //see all restaurants in a county,  list of restaurants
-Route::get('counties/{county:slug}/restaurants', [CountiesController::class, 'restaurants'])->name('county.restaurants');
+Route::get('counties/{county}/restaurants', [CountiesController::class, 'restaurants'])->name('county.restaurants');
 
 
 //see all restaurants under a category and location,  list of restaurants
@@ -64,7 +64,10 @@ Route::middleware(['auth'])->name('backend.')->group(function(){
     Route::get('dashboard', [DashboardController::class,'index'])->name('dashboard');
     Route::resource('categories', CategoriesController::class);
     Route::resource('counties', CountiesController::class);
-    Route::resource('counties.locations', LocationsController::class);
+    Route::put('locations/{location}', [LocationsController::class,'update'])->name('updatelocation');
+    Route::resource('counties.locations', LocationsController::class)->except([
+        'update'
+    ]);
     Route::resource('statuses', StatusesController::class);
     Route::post('restaurants/{restaurant}/link', [RestaurantsController::class, 'createLink'])->name('restaurants.link');
     Route::delete('linkdelete',[RestaurantsController::class, 'linkDelete'] )->name('linkDelete');

@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Status extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable;
 
     protected $fillable = ['name', 'description','slug'];
 
@@ -15,8 +16,17 @@ class Status extends Model
     {
         return $this->hasMany(Restaurant::class);
     }
-    public function getRouteKeyName()
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable(): array
     {
-        return 'slug';
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
     }
 }
