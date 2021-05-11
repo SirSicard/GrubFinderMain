@@ -53,4 +53,9 @@ class Restaurant extends Model
             ]
         ];
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

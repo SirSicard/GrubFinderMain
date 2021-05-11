@@ -36,4 +36,9 @@ class County extends Model
             ]
         ];
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }
