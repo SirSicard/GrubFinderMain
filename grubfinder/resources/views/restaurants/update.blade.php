@@ -162,8 +162,12 @@
         </div>
 
         <div>
-            {{ Form::select('type', ['Website'=>'Website','Socail Media'=>'Social Media', 'Youtube'=>'Youtube',
-            'Email'=>'Email'],
+            {{ Form::select('type', [
+            'Facebook'=>'Facebook',
+            'Twitter'=>'Twitter',
+            'Youtube'=>'Youtube',
+            'Email'=>'Email'
+            ],
             null,
             ['class' =>
             'w-full', 'id' =>

@@ -31,11 +31,13 @@ class RestaurantsRequest extends FormRequest
 //                .$this->restaurant->id ,
 //            'slug' =>$this->restaurant == null ? 'unique:restaurants,slug' : 'unique:restaurants,slug,'
 //                .$this->restaurant->id,
-        'name' => 'required',
-
+            'name' => 'required',
+            'description' => 'required',
             'address' => 'required',
             'phone' => 'required',
-//            'gmap' => 'required',
+            'lat' => 'required',
+            'lng' => 'required'
+//
             //'status_id' => 'required'
 
         ];

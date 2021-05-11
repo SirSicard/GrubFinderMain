@@ -58,7 +58,7 @@ class RestaurantsController extends Controller
     public function store(Restaurant $restaurant, RestaurantsRequest $restaurantsRequest)
     {
         // create the restaurant first
-        $restaurantsRequest['slug'] = Str::slug($restaurantsRequest->name, '-');
+//        $restaurantsRequest['slug'] = Str::slug($restaurantsRequest->name, '-');
         $restaurant->create($restaurantsRequest->all())
         ->categories()->sync($restaurantsRequest->categories);
 

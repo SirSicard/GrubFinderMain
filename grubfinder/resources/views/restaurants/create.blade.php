@@ -30,7 +30,13 @@
         </div>
         <div>
             {{ Form::textarea('description', null, ['class' => 'w-full', 'id' => 'description']) }}
+            @error('description')
+            <div class="text-red-500 mt-2 text-sm">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
+
 
         <div>
             <label class="text-gray-200" for="address">Address</label>
@@ -38,6 +44,11 @@
         </div>
         <div>
             {{ Form::text('address', null, ['class' => 'w-full', 'id' => 'address']) }}
+            @error('address')
+            <div class="text-red-500 mt-2 text-sm">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
 
 
@@ -46,6 +57,11 @@
         </div>
         <div>
             {{ Form::text('phone', null, ['class' => 'w-full', 'id' => 'phone']) }}
+            @error('phone')
+            <div class="text-red-500 mt-2 text-sm">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
 
         <div>
@@ -53,6 +69,11 @@
         </div>
         <div>
             {{ Form::text('website', null, ['class' => 'w-full', 'id' => 'website']) }}
+            @error('website')
+            <div class="text-red-500 mt-2 text-sm">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
 
         <div>
@@ -60,12 +81,22 @@
         </div>
         <div>
             {{ Form::text('lat', null, ['class' => 'w-full', 'id' => 'lat']) }}
+            @error('lat')
+            <div class="text-red-500 mt-2 text-sm">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
         <div>
             <label for="lng" class="text-gray-200">Longitude</label>
         </div>
         <div>
             {{ Form::text('lng', null, ['class' => 'w-full', 'id' => 'lng']) }}
+            @error('lng')
+            <div class="text-red-500 mt-2 text-sm">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
 
         <div>

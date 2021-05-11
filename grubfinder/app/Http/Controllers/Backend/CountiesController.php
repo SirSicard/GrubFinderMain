@@ -21,7 +21,7 @@ class CountiesController extends Controller
     public function index( County $county)
     {
         //
-        $counties = $county->orderByRaw('name')->with('locations', 'restaurants', )->paginate(6);
+        $counties = $county->orderByRaw('name')->with('locations', 'restaurants' )->paginate(6);
         return view('counties.index', compact('counties'));
     }
 
@@ -65,24 +65,29 @@ class CountiesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param County $county
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function edit($id)
+    public function edit(County $county)
     {
         //
+
+        return view('counties.update', compact('county'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param CountyRequest $countyRequest
+     * @param County $county
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(CountyRequest $countyRequest, County $county)
     {
         //
+
+        $county->update($countyRequest->all());
+        return redirect()->route('backend.counties.index');
     }
 
 
@@ -91,7 +96,9 @@ class CountiesController extends Controller
         $counties =  County::withCount('restaurants')->get();
         $locations = $county->locations()->pluck('name', 'id');
         $categories = Category::all()->pluck('name', 'id');
-        $restaurants = $county->restaurants->where('status_id', 4)->sortByDesc('created_at');
+        $restaurants = $county->restaurants()->where('status_id', 4)->with('location.county','location','categories')
+            ->get()
+            ->sortByDesc('created_at');
         return view('list', compact('restaurants', 'locations', 'categories', 'counties'));
     }
 

@@ -6,12 +6,17 @@
         // Initialize and add the map
         function initMap() {
             // The location of Uluru
-            const malmo = { lat: 55.60474300570539, lng: 13.002744390833703};
+            @if(request()->is('/'))
+                let center = { lat: 59.2786430021687, lng: 15.214129232586217};
+            @endif
+                @if(!request()->is('/'))
+                let center = { lat:{!! $restaurants->first()->lat !!}, lng:{!! $restaurants->first()->lng !!} };
+            @endif
 
             // The map, centered at malmo
             const map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 11,
-                center: malmo,
+                center: center,
             });
             // call the markers
             addMarkers(map);

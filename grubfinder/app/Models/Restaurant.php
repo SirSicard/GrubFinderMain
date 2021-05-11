@@ -12,10 +12,7 @@ class Restaurant extends Model
 
     protected $fillable = ['name', 'description', 'address', 'phone', 'website',  'location_id', 'status_id','slug','lat','lng'];
 
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
+
 
 
 
@@ -53,9 +50,6 @@ class Restaurant extends Model
         return [
             'slug' => [
                 'source' => 'name',
-                'separator' => '-',
-                'unique' => true,
-                'firstUniqueSuffix'  => 2,
             ]
         ];
     }

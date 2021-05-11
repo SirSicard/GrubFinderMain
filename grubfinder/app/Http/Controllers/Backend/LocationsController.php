@@ -46,7 +46,7 @@ class LocationsController extends Controller
      */
     public function store(LocationsRequest $locationRequest, County $county)
     {
-        $locationRequest['slug'] = Str::slug($locationRequest->name, '-');
+//        $locationRequest['slug'] = Str::slug($locationRequest->name, '-');
         $county->locations()->create($locationRequest->all());
         return redirect()->route('backend.counties.locations.index', $county);
     }

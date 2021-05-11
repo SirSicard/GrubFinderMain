@@ -6,11 +6,11 @@
             <h1 class="inline-block mb-4 text-6xl text-black">
                 Create a new restaurant suggestion
             </h1>
-    
+
             <ul>@foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach</ul>
-    
+
         </div>
         {!! Form::open(['route' => 'add','class' => 'space-y-5']) !!}
         <div class="">
@@ -25,45 +25,51 @@
                 </div>
                 @enderror
             </div>
-    
+
             <div>
                 <label class="text-black" for="description">Description</label>
-    
+
             </div>
             <div>
                 {{ Form::textarea('description', null, ['class' => 'w-full', 'id' => 'description']) }}
             </div>
-    
+
             <div>
                 <label class="text-black" for="address">Address</label>
-    
+
             </div>
             <div>
                 {{ Form::text('address', null, ['class' => 'w-full', 'id' => 'address']) }}
             </div>
-    
-    
+
+
             <div>
                 <label for="phone" class="text-black">Phone</label>
             </div>
             <div>
                 {{ Form::text('phone', null, ['class' => 'w-full', 'id' => 'phone']) }}
             </div>
-    
+
             <div>
                 <label for="website" class="text-black">Website</label>
             </div>
             <div>
                 {{ Form::text('website', null, ['class' => 'w-full', 'id' => 'website']) }}
             </div>
-    
+
             <div>
-                <label for="gmap" class="text-black">Google Map</label>
+                <label for="lat" class="text-black">Latitude</label>
             </div>
             <div>
-                {{ Form::text('gmap', null, ['class' => 'w-full', 'id' => 'gmap']) }}
+                {{ Form::text('lat', null, ['class' => 'w-full', 'id' => 'lat']) }}
             </div>
-    
+            <div>
+                <label for="lng" class="text-black">Longitude</label>
+            </div>
+            <div>
+                {{ Form::text('lng', null, ['class' => 'w-full', 'id' => 'lng']) }}
+            </div>
+
             <div>
                 <label for="location_id" class="text-black">Location</label>
             </div>
@@ -79,19 +85,19 @@
             <div>
                 Categories
             </div>
-    
+
             <div>
                 @foreach($categories as $category)
                         <label>{{ $category->name }}</label>
                 {{ Form::checkbox('categories[]', $category->id)  }}
                 @endforeach
             </div>
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
         </div>
         <button class="m-auto">
             <div class="font-bold button w-96">
@@ -101,10 +107,10 @@
                 </svg>Submit
             </div>
         </button>
-    
+
         {!! Form::close() !!}
 
-    </section> 
+    </section>
   </body>
 </html>
 @endsection
