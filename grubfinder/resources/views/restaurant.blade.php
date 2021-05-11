@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="col-span-1 m-3">
-            <div class="m-4">here be map: {{ $restaurant->gmap }}</div>
+            <div id="map" class="map">
         </div>
     </div>
 
