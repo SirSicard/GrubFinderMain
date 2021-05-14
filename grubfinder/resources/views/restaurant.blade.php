@@ -1,4 +1,5 @@
 @extends('nav')
+
 @section('frontend')
 <section class="w-11/12 m-auto bg-white ">
     <div class="grid grid-cols-2 m-6 rounded shadow-md hover:shadow-lg">
@@ -7,6 +8,7 @@
                 {{ $restaurant->name }}
             </h2>
             <p class="m-4 para-sm">Address: {{ $restaurant->address }}</p>
+            <p class="m-4 para-sm">Categories: {{$restaurant->categories->implode('name', ', ')}}</p>
             <p class="m-4 para-sm">Phone: {{ $restaurant->phone }}</p>
             <a href="https://{{ $restaurant->website }}" class="m-4 hover:underline para-md">Website: {{ $restaurant->website }}</a>
             <p class="m-4 para-md">About: {{ $restaurant->description }}</p>

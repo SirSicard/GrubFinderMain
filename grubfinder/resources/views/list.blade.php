@@ -2,37 +2,42 @@
 
 
 @section('google-map-stuff')
-    <script>
-        // Initialize and add the map
-        function initMap() {
-            // The location of Uluru
-            @if(request()->is('/'))
-                let center = { lat: 59.2786430021687, lng: 15.214129232586217};
-                let zoom = 6;
-            @endif
-                @if(!request()->is('/'))
-                let center = { lat:{!! $restaurants->first()->lat !!}, lng:{!! $restaurants->first()->lng !!} };
-                let zoom = 11;
-            @endif
 
-            // The map, centered at malmo
-            const map = new google.maps.Map(document.getElementById("map"), {
-                zoom: zoom,
-                center: center,
-            });
-            // call the markers
-            addMarkers(map);
-        }
-        function addMarkers(map){
-            @foreach($restaurants as $restaurant)
-            new google.maps.Marker({
-                position: { lat:{!! $restaurant->lat !!}, lng:{!! $restaurant->lng !!} },
-                map:map,
-                title:"{{ $restaurant->name }}"
-            });
-            @endforeach
-        }
-    </script>
+        <script>
+            // Initialize and add the map
+            function initMap() {
+                // The location of Uluru
+                @if(request()->is('/'))
+                    let center = { lat: 59.2786430021687, lng: 15.214129232586217};
+                    let zoom = 6;
+                @endif
+                @if(!request()->is('/'))
+                    @if($restaurants->first()  )
+                        let center = { lat:{!! $restaurants->first()->lat !!}, lng:{!! $restaurants->first()->lng !!} };
+                        let zoom = 11;
+                    @endif
+
+                @endif
+
+                // The map, centered at malmo
+                const map = new google.maps.Map(document.getElementById("map"), {
+                    zoom: zoom,
+                    center: center,
+                });
+                // call the markers
+                addMarkers(map);
+            }
+            function addMarkers(map){
+                @foreach($restaurants as $restaurant)
+                new google.maps.Marker({
+                    position: { lat:{!! $restaurant->lat !!}, lng:{!! $restaurant->lng !!} },
+                    map:map,
+                    title:"{{ $restaurant->name }}"
+                });
+                @endforeach
+            }
+        </script>
+
 @endsection
 
 @section('frontend')
@@ -76,9 +81,11 @@
         <div class="col-span-1">
         @foreach($restaurants as $restaurant)<!-- card go here -->
             <div class="relative m-3 overflow-hidden bg-white rounded shadow-md hover:shadow-lg">
-                            <img src="https://picsum.photos/600/600?random&grayscale" alt="" class="object-cover object-center w-full h-48 sm:h-48">
 
-                <div class="absolute top-0 p-2 mt-2 ml-2 text-xs uppercase bg-gray-200 rounded-full bg-secondary-100 text-secondary-200">
+
+                <div class="absolute top-0 p-2 mt-2  ml-2 text-xs uppercase bg-gray-200 rounded-full
+                bg-secondary-100
+                 text-secondary-200">
                     <time datetime="{{ $restaurant->created_at->toIso8601String() }}">{{ $restaurant->created_at->diffForHumans() }}</time>
                 </div>
 
@@ -91,7 +98,7 @@
                     </svg>
                     <span>{{ $restaurant->location->county->name }}, {{ $restaurant->location->name }}</span>
                 </div>
-                <div class="m-4">
+                <div class="m-4 mt-16">
                     <span class="font-bold">
                      <a href="{{ route('show', ['restaurant' => $restaurant]) }}">
                         {{$restaurant->name}}
